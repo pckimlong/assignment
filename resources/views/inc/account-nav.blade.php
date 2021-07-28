@@ -1,17 +1,5 @@
 <div class="account-nav">
   <ul class="list-group">
-    {{-- @role('admin')
-    <li class="list-group-item list-group-item-action {{ request()->segment(2) == 'dashboard' ? 'active': ''}}">
-      <a href="{{route('account.dashboard')}}" class="account-nav-link">
-        <i class="fas fa-chart-line"></i> Dashboard
-      </a>
-    </li>
-    <li class="list-group-item list-group-item-action {{ request()->segment(2) == 'view-all-users' ? 'active': ''}}">
-      <a href="{{route('account.viewAllUsers')}}" class="account-nav-link">
-        <i class="fas fa-users"></i> View All Users
-      </a>
-    </li>
-    @endrole --}}
     @auth('company')
     <li class="list-group-item list-group-item-action {{ request()->segment(2) == 'author-section' ? 'active': ''}}">
       {{-- <a href="{{route('account.authorSection')}}" class="account-nav-link"> --}}
@@ -21,37 +9,38 @@
       {{-- <a href="{{route('post.create')}}" class="account-nav-link"> --}}
         <i class="fas fa-plus-square"></i> Create Job listing
     </li>
-    <li class="list-group-item list-group-item-action {{ request()->segment(2) == 'job-application' ? 'active': ''}}">
+    <li class="list-group-item list-group-item-action {{ request()->segment(2) == 'home' ? 'active': ''}}">
       {{-- <a href="{{route('jobApplication.index')}}" class="account-nav-link"> --}}
         <i class="fas fa-bell"></i> Job Applications
     </li>
     @endauth
-    <li class="list-group-item list-group-item-action {{ request()->segment(2) == 'overview' ? 'active': ''}}">
-      {{-- <a href="{{route('account.index')}}" class="account-nav-link"> --}}
-        <i class="fas fa-user-shield"></i> User Account
-      </a>
-    </li>
     @auth('jobseeker')
-    <li class="list-group-item list-group-item-action {{ request()->segment(2) == 'become-employer' ? 'active': ''}}">
-      {{-- <a href="{{route('account.becomeEmployer')}}" class="account-nav-link"> --}}
-        <i class="fas fa-user-shield"></i> Become an employer
+    <li class="list-group-item list-group-item-action {{ request()->segment(2) == 'overview' ? 'active': ''}}">
+      <a href="{{route('jobseeker.overview')}}" class="account-nav-link">
+        <i class="fas fa-user-shield"></i> Account
       </a>
     </li>
-    @endauth
-    <li class="list-group-item list-group-item-action {{ request()->segment(2) == 'change-password' ? 'active': ''}}">
-      {{-- <a href="{{route('account.changePassword')}}" class="account-nav-link"> --}}
+    <li class="list-group-item list-group-item-action {{ request()->segment(2) == 'cv' ? 'active': ''}}">
+      <a href="{{route('jobseeker.cv')}}" class="account-nav-link">
+        <i class="far fa-id-card"></i> CV
+      </a>
+    </li>
+    
+    <li class="list-group-item list-group-item-action {{ request()->segment(2) == 'password' ? 'active': ''}}">
+      <a href="{{route('jobseeker.change.password')}}" class="account-nav-link">
         <i class="fas fa-fingerprint"></i> Change Password
       </a>
     </li>    
-    <li class="list-group-item list-group-item-action {{ request()->segment(2) == 'my-saved-jobs' ? 'active': ''}}">
-      {{-- <a href="{{route('savedJob.index')}}" class="account-nav-link"> --}}
+    <li class="list-group-item list-group-item-action {{ request()->segment(2) == 'saved-jobs' ? 'active': ''}}">
+      <a href="{{route('jobseeker.saved-job')}}" class="account-nav-link">
         <i class="fas fa-stream"></i> My saved Jobs
       </a>
     </li>   
-     <li class="list-group-item list-group-item-action {{ request()->segment(2) == 'deactivate' ? 'active': ''}}">
-      {{-- <a href="{{route('account.deactivate')}}" class="account-nav-link"> --}}
+     <li class="list-group-item list-group-item-action {{ request()->segment(2) == 'deativate' ? 'active': ''}}">
+      <a href="{{route('jobseeker.deativate')}}" class="account-nav-link">
         <i class="fas fa-folder-minus"></i> Deactivate Account
       </a>
-    </li>    
+    </li>   
+    @endauth 
   </ul>
 </div>

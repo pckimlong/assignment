@@ -18,7 +18,7 @@ class CreateJobSeekersTable extends Migration
             $table->string('firstname', 30)->nullable(false);
             $table->string('lastname', 30)->nullable(false);
             $table->string('phone_number', 10)->nullable(false);
-            $table->char('gender', 1)->nullable(true);
+            $table->char('gender', 1)->nullable();
             $table->timestamp('birthdate')->nullable();
             $table->binary('profile_image')->nullable();
             $table->text('current_address')->nullable();

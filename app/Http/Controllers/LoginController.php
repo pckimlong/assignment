@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use GrahamCampbell\ResultType\Success;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class LoginController extends Controller
 {
@@ -50,8 +51,10 @@ class LoginController extends Controller
         if (Auth::guard('jobseeker')->attempt(['email' => $request->email, 'password' => $request->password], $request->get('remember'))) {
             Auth::shouldUse('jobseeker');
             // dd(Auth::user()->jobSeeker->firstname);
+            
             return redirect()->intended('/');
         }
+        Alert::toast('Incorrect email or password!', 'error');
         return back()->withInput($request->only('email', 'remember'));
     }
 

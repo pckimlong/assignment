@@ -11,7 +11,6 @@
             <div class="account-bdy">
                 <div class="row">
                     <div class="col-sm-12 col-md-3 pr-md-0 pr-sm-3">
-                        {{-- account-navigation from inc --}}
                         @include('inc.account-nav')
                     </div>
                     <div class="col-sm-12 col-md-9 pl-md-0 pl-sm-3 ">

@@ -20,6 +20,8 @@ class CreateJobSeekerLoginsTable extends Migration
             $table->rememberToken();
             $table->string('password');
             $table->timestamps();
+
+            $table->foreign('id')->references('id')->on('job_seekers')->onDelete('cascade');
         });
     }
 
