@@ -114,7 +114,7 @@
                         <button type="submit" class="btn primary-btn btn-block">Register</button>
                     </form>
                     <div class="my-3">
-                        <p>Already have an account? <a href="{{ route('jobseeker.login') }}">Login now</a></p>
+                        <p>Already have an account? <a href="{{ route('login') }}">Login now</a></p>
                     </div>
                 </div>
             </div>

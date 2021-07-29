@@ -6,12 +6,10 @@
         <div class="col-sm-12 col-md-6 px-0">
             <div class="login-container">
                 <div class="login-header mb-3">
-                    <h3> <img src="{{asset('images/logo/JobPosting.png')}}" width="50px;" alt=""> JobPosting Login</h3>
-                    <p class="login-header-title">Welcome back to Job Posting</p>
-                    <p class="text-muted">login with your registered email & password.</p>
+                    <h3> <img src="{{asset('images/logo/JobPosting.png')}}" width="50px;" alt="">Company Login</h3>
                 </div>
                 <div class="login-form">
-                    <form action="{{ route('jobseeker.loginNow') }}" method="POST">
+                    <form action="{{ route('company.loginNow') }}" method="POST">
                         @csrf
                         <div class="form-group">
                             <div class="input-group mb-3">
@@ -46,22 +44,15 @@
                         <div class="form-group">
                             <a href="#" class="secondary-link">Forgot password?</a>
                         </div>
-                        <button type="submit" class="btn primary-btn btn-block">Login</button>
+                        <button type="submit" class="btn primary-btn btn-block">Company Login</button>
                     </form>
                     <div class="my-3">
-                        <p>Don't have an account? <a href="/register">Register now</a></p>
+                        <p>Don't have an account? <a href="{{ route('company.registration') }}">Register now</a></p>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-sm-12 col-md-6 px-0">
-            <div class="login-poster">
-                {{-- <img src="" alt=""> --}}
-                <h2 class="mb-3 slogon">Mark yourself as <br>Actively Job seeker</h2>
-                <p class="text-white lead">We have enabled this feature targeting superheros
-                    who lost their jobs during this crisis.</p>
-            </div>
-        </div>
+        
     </div>
 </div>
 @endsection

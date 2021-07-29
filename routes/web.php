@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\JobSeekerController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PostController;
@@ -19,13 +20,13 @@ use RealRashid\SweetAlert\Facades\Alert;
 |
 */
 
-Route::get('/', [PostController::class, 'index'])->name('post.index');
+Route::get('/', [PostController::class, 'index'])->name('index');
 
 Route::get('/search', [JobController::class, 'index'])->name('job.index');
 
 
-//Job seeker
-Route::get('job-seeker/login', [LoginController::class, 'showJobSeekerLoginForm'])->name('jobseeker.login');
+//! Job seeker----------------------------------------------------------------------------------------------------------
+Route::get('job-seeker/login', [LoginController::class, 'showJobSeekerLoginForm'])->name('login');
 Route::post('job-seeker/login', [LoginController::class, 'jobSeekerLogin'])->name('jobseeker.loginNow');
 Route::get('job-seeker/registration', [RegisterController::class,'showJobSeekerRegisterForm'])->name('jobseeker.registration');
 Route::post('job-seeker/registration', [RegisterController::class,'createJobSeeker'])->name('jobseeker.register');
@@ -39,13 +40,33 @@ Route::get('job-seeker/deativate', [JobSeekerController::class,'deactive'])->nam
 Route::delete('job-seeker/delete', [JobSeekerController::class,'deleteAccount'])->name('jobseeker.account.delete');
 // Route::get('job-seeker/logout', [JobSeekerController::class,'index'])->name('jobseeker.logout');
 
+//! Company--------------------------------------------------------------------------------------------------------------
+Route::get('company/login', [LoginController::class, 'showCompanyLoginForm'])->name('company.login');
+Route::post('company/login', [LoginController::class, 'companyLogin'])->name('company.loginNow');
+Route::get('company/registration', [RegisterController::class,'showCompanyRegisterForm'])->name('company.registration');
+Route::post('company/registration', [RegisterController::class,'createCompany'])->name('company.register');
 
+Route::get('company/dashboard', [CompanyController::class,'overview'])->name('company.dashboard');
+Route::get('company/overview', [CompanyController::class,'overview'])->name('company.overview');
+Route::get('company/password', [CompanyController::class,'changePasswordView'])->name('company.change.password');
+Route::put('company/password', [CompanyController::class,'changePassword'])->name('company.change.password');
+Route::get('company/info', [CompanyController::class,'infoView'])->name('company.info');
+Route::put('company/{id}', [CompanyController::class, 'update'])->name('company.update');
+Route::get('company/upload', [CompanyController::class,'uploadView'])->name('company.upload');
+
+
+//! Job-----------------------------------------------------------------------------------------------------------------
 
 Route::get('logout/{guard}', function ($guard) {
         
         if($guard == 'jobseeker'){
                 Auth::guard('jobseeker')-> logout();
-                return redirect()->route('post.index');
+                return redirect()->route('index');
         }
+        if($guard == 'company'){
+                Auth::guard('company')-> logout();
+                return redirect()->route('index');
+        }
+
 });
 

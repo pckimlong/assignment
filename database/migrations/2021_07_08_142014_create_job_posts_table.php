@@ -15,6 +15,7 @@ class CreateJobPostsTable extends Migration
     {
         Schema::create('job_posts', function (Blueprint $table) {
             $table->id();
+            $table->text('job_title')->nullable(false);
             $table->bigInteger('company_id', false, true);
             $table->boolean('is_active')->nullable(false)->default(true);
             $table->integer('hire_amount')->unsigned()->nullable(false)->default(1);
@@ -22,8 +23,8 @@ class CreateJobPostsTable extends Migration
             $table->decimal('max_salary', 5, 2)->nullable();
             $table->integer('min_age')->unsigned()->nullable();
             $table->integer('max_age')->unsigned()->nullable();
-            $table->longText('job_description')->nullable(false);
-            $table->longText('job_requirement')->nullable(false);
+            $table->string('employment_type');
+            $table->longText('specifications')->nullable(false);
             $table->char('sex', 1);
             $table->string('term', 30)->nullable();
             $table->integer('year_of_experience')->unsigned()->nullable();

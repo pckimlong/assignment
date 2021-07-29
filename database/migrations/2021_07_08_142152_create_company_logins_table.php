@@ -14,12 +14,13 @@ class CreateCompanyLoginsTable extends Migration
     public function up()
     {
         Schema::create('company_logins', function (Blueprint $table) {
-            $table->bigInteger('company_id', false, true)->primary();
+            $table->bigInteger('id', false, true)->primary();
             $table->string('email', 100)->unique();
             $table->string('password', 100)->nullable(false);
             $table->timestamps();
             $table->rememberToken();
-            $table->foreign('company_id')->references('id')->on('companies');
+
+            $table->foreign('id')->references('id')->on('companies')->onDelete('cascade');
         });
     }
 

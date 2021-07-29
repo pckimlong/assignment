@@ -9,3 +9,5 @@ class Industry extends Model
 {
     use HasFactory;
 }
+
+

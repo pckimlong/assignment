@@ -14,7 +14,7 @@ class JobSeekerController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth:jobseeker')->except(route('post.index'));
+        $this->middleware('auth:jobseeker')->except(route('index'));
     }
 
     public function index()
@@ -78,7 +78,7 @@ class JobSeekerController extends Controller
         Auth::logout($user->id);
         if ($user->delete()) {
             Alert::toast('Your account was deleted successfully!', 'info');
-            return redirect(route('post.index'));
+            return redirect(route('index'));
         } else {
             return view('jobseeker.job-seeker-deactive');
         }

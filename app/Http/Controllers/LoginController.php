@@ -11,17 +11,17 @@ class LoginController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('guest')->except('logout');
-        $this->middleware('guest:company')->except('logout');
-        $this->middleware('guest:jobseeker')->except('logout');
+        $this->middleware('guest');
+        $this->middleware('guest:company');
+        $this->middleware('guest:jobseeker');
     }
 
     /// Company
-    public function showComanyLoginForm()
+    public function showCompanyLoginForm()
     {
         return view('company.login');
     }
-    public function adminLogin(Request $request)
+    public function companyLogin(Request $request)
     {
         $this->validate($request, [
             'email'   => 'required|email',
@@ -30,9 +30,10 @@ class LoginController extends Controller
 
         if (Auth::guard('company')->attempt(['email' => $request->email, 'password' => $request->password], $request->get('remember'))) {
             Auth::shouldUse('company');
-            return redirect()->intended('/company');
+            return redirect()->intended(route('index'));
         }
-        return back()->withInput($request->only('email', 'remember'));
+        Alert::toast('Incorrect email or password!', 'error');
+    return back()->withInput($request->only('email', 'remember'));
     }
 
 
@@ -50,9 +51,7 @@ class LoginController extends Controller
 
         if (Auth::guard('jobseeker')->attempt(['email' => $request->email, 'password' => $request->password], $request->get('remember'))) {
             Auth::shouldUse('jobseeker');
-            // dd(Auth::user()->jobSeeker->firstname);
-            
-            return redirect()->intended('/');
+            return redirect()->intended(route('index'));
         }
         Alert::toast('Incorrect email or password!', 'error');
         return back()->withInput($request->only('email', 'remember'));

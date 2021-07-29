@@ -8,6 +8,7 @@ use App\Models\JobSeeker;
 use App\Models\JobSeekerLogin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class RegisterController extends Controller
 {
@@ -40,10 +41,11 @@ class RegisterController extends Controller
 
         $companyDetail = Company::create();
         $company = CompanyLogin::create([
-            'name' => $request['name'],
+            'id' => $companyDetail['id'],
             'email' => $request['email'],
             'password' => Hash::make($request['password']),
         ]);
+        Alert::toast('Account created successfully!', 'success');
         return redirect()->intended('login/admin');
     }
 
@@ -70,7 +72,7 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => Hash::make($data['password'])
         ]);
-        
+        Alert::toast('Account created successfully!', 'success');
         return redirect("/")->withSuccess('You have signed-in');
 
         // return redirect()->intended('/');

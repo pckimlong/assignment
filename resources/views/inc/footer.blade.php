@@ -8,7 +8,7 @@
             <div class="line-divider"></div>
             <div class="footer-link-list">
               <a href="{{route('jobseeker.registration')}}" class="footer-links">Register <span class="badge badge-primary">Free</span></a>
-             <a href="{{route('jobseeker.login')}}" class="footer-links">Login</a> 
+             <a href="{{route('login')}}" class="footer-links">Login</a> 
              <a href="" class="footer-links">Find jobs</a>
              <a href="#" class="footer-links">Faq</a>
             </div>
@@ -16,11 +16,11 @@
         </div>
         <div class="col-sm-6 col-md-3">
           <div class="footer-links">
-            <h5 class="lead footer-hdr">For Employers</h5>
+            <h5 class="lead footer-hdr">For Company</h5>
             <div class="line-divider"></div>
             <div class="footer-link-list">
-             {{-- <a href="{{route('jobseeker.registration')}}" class="footer-links">Register <span class="badge badge-primary">Free</span></a> --}}
-             {{-- <a href="{{route('login')}}" class="footer-links">Login</a> --}}
+             <a href="{{route('company.registration')}}" class="footer-links">Register <span class="badge badge-primary">Free</span></a>
+             <a href="{{route('company.login')}}" class="footer-links">Login</a>
              {{-- <a href="{{route('post.create')}}" class="footer-links">Vacancy Announcement</a> --}}
              <a href="#" class="footer-links">Faq</a>
             </div>

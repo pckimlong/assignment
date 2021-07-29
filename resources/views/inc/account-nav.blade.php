@@ -1,19 +1,34 @@
 <div class="account-nav">
   <ul class="list-group">
     @auth('company')
-    <li class="list-group-item list-group-item-action {{ request()->segment(2) == 'author-section' ? 'active': ''}}">
-      {{-- <a href="{{route('account.authorSection')}}" class="account-nav-link"> --}}
-        <i class="fas fa-chart-line"></i> Author Section
+    <li class="list-group-item list-group-item-action {{ request()->segment(2) == 'overview' ? 'active': ''}}">
+      <a href="{{route('company.overview')}}" class="account-nav-link">
+        <i class="fas fa-chart-line"></i> Overview
+    </li>
+    <li class="list-group-item list-group-item-action {{ request()->segment(2) == 'info' ? 'active': ''}}">
+      <a href="{{route('company.info')}}" class="account-nav-link">
+        <i class="fas fa-info-circle"></i> Information
+    </li>
+    <li class="list-group-item list-group-item-action {{ request()->segment(2) == 'upload' ? 'active': ''}}">
+      <a href="{{route('company.upload')}}" class="account-nav-link">
+        <i class="fas fa-upload"></i> Upload a Job
     </li>
     <li class="list-group-item list-group-item-action {{ request()->segment(2) == 'post' && request()->segment(3) == 'create' ? 'active': ''}}">
       {{-- <a href="{{route('post.create')}}" class="account-nav-link"> --}}
-        <i class="fas fa-plus-square"></i> Create Job listing
-    </li>
+        <i class="fas fa-list"></i> Jobs List
+    </li> 
+    <li class="list-group-item list-group-item-action {{ request()->segment(2) == 'password' ? 'active': ''}}">
+      <a href="{{route('company.change.password')}}" class="account-nav-link">
+        <i class="fas fa-fingerprint"></i> Change Password
+      </a>
+    </li> 
     <li class="list-group-item list-group-item-action {{ request()->segment(2) == 'home' ? 'active': ''}}">
       {{-- <a href="{{route('jobApplication.index')}}" class="account-nav-link"> --}}
         <i class="fas fa-bell"></i> Job Applications
     </li>
     @endauth
+
+
     @auth('jobseeker')
     <li class="list-group-item list-group-item-action {{ request()->segment(2) == 'overview' ? 'active': ''}}">
       <a href="{{route('jobseeker.overview')}}" class="account-nav-link">

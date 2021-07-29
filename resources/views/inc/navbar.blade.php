@@ -27,33 +27,13 @@
         </li>
         @endauth
 
-        
-        @auth('company')
-        <li class="nav-item dropdown dropdown-left"> 
-          <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> 
-          <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ Auth::guard('jobseeker')->user() }}</span> 
-            <img class="img-profile rounded-circle" src="{{asset('images/user-profile.png')}}" width="40px"> 
-          </a>
-          {{-- <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown"> 
-            @role('admin')
-            <a class="dropdown-item" href="{{route('account.dashboard')}}"> <i class="fas fa-cogs fa-sm "></i> Dashboard</a> 
-            @endrole
-            @role('author')
-            <a class="dropdown-item" href="{{route('account.authorSection')}}"> <i class="fa fa-cogs fa-sm "></i> Author Dashboard </a> 
-            @endrole
-            <a class="dropdown-item" href="{{route('account.index')}}"> <i class="fas fa-user fa-sm "></i> Profile </a> 
-            <a class="dropdown-item" href="{{route('account.changePassword')}}"> <i class="fas fa-key fa-sm "></i> Change Password </a> 
-              <div class="dropdown-divider"></div> 
-              <a class="dropdown-item" href="{{route('account.logout')}}"> 
-                <i class="fas fa-sign-out-alt"></i> 
-                Logout 
-              </a>
-          </div> --}}
-        </li>
-        @endauth
-
-        @if (!auth('jobseeker')->check())
-        <a href="{{ route('jobseeker.login') }}" class="btn primary-btn">Sign up or Log in</a>
+        @if (!auth('jobseeker')->check() && !auth('company')->check())
+        <a href="{{ route('login') }}" class="btn primary-btn">Sign up or Log in</a>
+        @endif
+        @if (auth('company')->check())
+        <div class="col-sm-6">
+            <a href="/logout/company" class="btn btn-outline-dark">Logout</a>
+        </div>
         @endif
       </ul>
     </div>

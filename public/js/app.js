@@ -56562,3 +56562,8 @@ module.exports = __webpack_require__(/*! D:\imp\job-lister-laravel-8\resources\s
 /***/ })
 
 /******/ });
+
+$('.custom-file-input').on('change', function() { 
+  let fileName = $(this).val().split('\\').pop(); 
+  $(this).next('.custom-file-label').addClass("selected").html(fileName); 
+});
