@@ -46,7 +46,7 @@ class RegisterController extends Controller
             'password' => Hash::make($request['password']),
         ]);
         Alert::toast('Account created successfully!', 'success');
-        return redirect()->intended('login/admin');
+        return redirect()->intended('company/login');
     }
 
     protected function createJobSeeker(Request $request)

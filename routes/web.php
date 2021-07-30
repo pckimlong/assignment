@@ -5,6 +5,7 @@ use App\Http\Controllers\JobSeekerController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\JobController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -21,6 +22,7 @@ use RealRashid\SweetAlert\Facades\Alert;
 */
 
 Route::get('/', [PostController::class, 'index'])->name('index');
+Route::get('/job/{job}', [PostController::class, 'show'])->name('post.show');
 
 Route::get('/search', [JobController::class, 'index'])->name('job.index');
 
@@ -53,6 +55,7 @@ Route::put('company/password', [CompanyController::class,'changePassword'])->nam
 Route::get('company/info', [CompanyController::class,'infoView'])->name('company.info');
 Route::put('company/{id}', [CompanyController::class, 'update'])->name('company.update');
 Route::get('company/upload', [CompanyController::class,'uploadView'])->name('company.upload');
+Route::post('company/upload', [CompanyController::class,'storeJob'])->name('company.storejob');
 
 
 //! Job-----------------------------------------------------------------------------------------------------------------

@@ -53,7 +53,7 @@
                           <img src="{{asset($post->company->logo)}}" alt="job listings" class="img-fluid p-2">
                         </div>
                         <div class="job-description col-xs-9 col-sm-8 col-md-7">
-                        <p class="company-name" title="{{$post->company->title}}">{{$post->company->title}}</p>
+                        <p class="company-name" title="{{$post->company->company_name}}">{{$post->company->company_name}}</p>
                           <ul class="company-listings">
                             <li>•{{substr($post->job_title, 0, 27)}}</li>
                         </ul>

@@ -7,10 +7,21 @@
     </div>
     <div class="account-bdy p-3">
       <div class="alert alert-primary">Your company details will be attached automatically.</div>
-      <p class="text-primary mb-4">Fill in all fields to create a job post</p>
       <div class="row mb-3">
         <div class="col-sm-12 col-md-12">
-          {{-- <form action="{{route('post.store')}}" id="postForm" method="POST"> --}}
+          <form action="{{route('company.storejob')}}" id="postForm" method="POST">
+
+            <div class="form-group">
+              <div class="row">
+                <div class="col-md-6">
+                  <p class="text-primary mb-4">Fill in all fields to create a job post</p>
+                </div>
+                <div class="col-md-6">
+                  <label for="">Deadline</label>
+                  <input type="date" class="form-control @error('deadline') is-invalid @enderror" name="deadline" value="{{ old('deadline') }}" required >
+                </div>
+              </div>
+            </div>
             @csrf
             <div class="form-group">
               <label for="">Job title</label>
@@ -27,20 +38,18 @@
                 <div class="col-md-6">
                   <label for="">Job level</label>
                   <select name="job_level" class="form-control" value="{{old('job_level')}}" required>
-                    <option value="Senior level">Senior level</option>
-                    <option value="Mid level">Mid level</option>
-                    <option value="Top level">Top level</option>
-                    <option value="Entry level">Entry level</option>
+                    @foreach (Config::get('constants.job_level') as $level)
+                      <option value="{{ $level }}">{{ $level }}</option>
+                    @endforeach
                   </select>
                 </div>
                 <div class="col-md-6">
-                  <label for="">No of vacancy</label>
-                  <input type="number" class="form-control @error('vacancy_count') is-invalid @enderror" name="vacancy_count" value="{{ old('vacancy_count') }}" required >
-                  @error('vacancy_count')
-                      <span class="invalid-feedback" role="alert">
-                          <strong>{{ $message }}</strong>
-                      </span>
-                  @enderror
+                  <label for="">Term</label>
+                  <select name="term" class="form-control" value="{{old('term')}}" required>
+                    @foreach (Config::get('constants.term') as $term)
+                      <option value="{{ $term }}">{{ $term }}</option>
+                    @endforeach
+                  </select>
                 </div>
               </div>
             </div>
@@ -62,16 +71,16 @@
                   <label for="">Age</label>
                   <div class="row">
                     <div class ="col-md">
-                      <input type="text" placeholder="Youngest age" class="form-control @error('salary') is-invalid @enderror" name="salary" value="{{ old('salary') }}" required >
-                      @error('salary')
+                      <input type="number" placeholder="Youngest age" class="form-control @error('min_age') is-invalid @enderror" name="min_age" value="{{ old('min_age') }}" required >
+                      @error('min_age')
                           <span class="invalid-feedback" role="alert">
                               <strong>{{ $message }}</strong>
                           </span>
                       @enderror
                     </div>
                     <div class ="col-md">
-                      <input type="text" placeholder="Oldest age" class="form-control @error('salary') is-invalid @enderror" name="salary" value="{{ old('salary') }}" required >
-                      @error('salary')
+                      <input type="number" placeholder="Oldest age" class="form-control @error('max_age') is-invalid @enderror" name="max_age" value="{{ old('max_age') }}" required >
+                      @error('max_age')
                           <span class="invalid-feedback" role="alert">
                               <strong>{{ $message }}</strong>
                           </span>
@@ -81,8 +90,8 @@
                 </div>
                 <div class="col-md-6">
                   <label for="">Sex</label>
-                  <select name="job_level" class="form-control" value="{{old('job_level')}}" required>
-                    <option value="B">Both</option>
+                  <select name="sex" class="form-control" value="{{old('sex')}}" required>
+                    <option value="B">Unlimited</option>
                     <option value="M">Male</option>
                     <option value="F">Female</option>
                   </select>
@@ -91,15 +100,13 @@
             </div>
 
             <div class="form-group">
-              <label for="">Employment Type</label>
-              <select name="employment_type" class="form-control" name="employment_type" value="{{old('employment_type')}}">
-                <option value="Full Time">Full Time</option>
-                <option value="Part Time">Part Time</option>
-                <option value="Freelance">Freelance</option>
-                <option value="Internship">Internship</option>
-                <option value="Trainneship">Trainneship</option>
-                <option value="Volunter">Volunter</option>
-              </select>
+              <label for="">Required language <span class="text-info">( If multiple separate with "," )</span></label>
+              <input type="text" placeholder="Khmer,English etc" class="form-control @error('languages') is-invalid @enderror" name="languages" value="{{ old('languages') }}" required >
+              @error('languages')
+                  <span class="invalid-feedback" role="alert">
+                      <strong>{{ $message }}</strong>
+                  </span>
+              @enderror
             </div>
 
             <div class="form-group">
@@ -108,16 +115,16 @@
                   <label for="">Offered Salary (Monthly)</label>
                   <div class="row">
                     <div class ="col-md">
-                      <input type="text" placeholder="Lowest $" class="form-control @error('salary') is-invalid @enderror" name="salary" value="{{ old('salary') }}" required >
-                      @error('salary')
+                      <input type="number" placeholder="Lowest $" class="form-control @error('min_salary') is-invalid @enderror" name="min_salary" value="{{ old('min_salary') }}" required >
+                      @error('min_salary')
                           <span class="invalid-feedback" role="alert">
                               <strong>{{ $message }}</strong>
                           </span>
                       @enderror
                     </div>
                     <div class ="col-md">
-                      <input type="text" placeholder="Highest $" class="form-control @error('salary') is-invalid @enderror" name="salary" value="{{ old('salary') }}" required >
-                      @error('salary')
+                      <input type="number" placeholder="Highest $" class="form-control @error('max_salary') is-invalid @enderror" name="max_salary" value="{{ old('max_salary') }}" required >
+                      @error('max_salary')
                           <span class="invalid-feedback" role="alert">
                               <strong>{{ $message }}</strong>
                           </span>
@@ -127,8 +134,8 @@
                 </div>
                 <div class="col-md-6">
                   <label for="">Hire amount</label>
-                  <input type="number" class="form-control @error('vacancy_count') is-invalid @enderror" name="vacancy_count" value="{{ old('vacancy_count') }}" required >
-                  @error('vacancy_count')
+                  <input type="number" class="form-control @error('hire_amount') is-invalid @enderror" name="hire_amount" value="{{ old('hire_amount') }}" required >
+                  @error('hire_amount')
                       <span class="invalid-feedback" role="alert">
                           <strong>{{ $message }}</strong>
                       </span>
@@ -138,33 +145,30 @@
             </div>
 
             <div class="form-group">
-              <div class="row">
-                <div class="col-md-6">
-                  <label for="">Education level</label>
-                  <select name="education_level" class="form-control" value="{{old('education_level')}}">
-                    <option value="Bachelors">Bachelors</option>
-                    <option value="High School">High School</option>
-                    <option value="Master">Master</option>
-                    <option value="SEE Mid School">SEE Mid School</option>
-                    <option value="Other">Other</option>
-                  </select>
-                </div>
-                <div class="col-md-6">
-                  <label for="">Experience</label>
-                  <select name="experience" class="form-control" value="{{old('experience')}}">
-                    <option value="Internship">Less than 1 year</option>
-                    <option value="1 year">1 year</option>
-                    <option value="2 years">2 years</option>
-                    <option value="2 years">3 years</option>
-                    <option value="More than 5+ year">More than 5+ year</option>
-                  </select>
-                </div>
-              </div>
+              <label for="">Skills <span class="text-info">( If multiple separate with "," )</span></label>
+              <input type="text" placeholder="Skill1,Skill2 etc" class="form-control @error('skills') is-invalid @enderror" name="skills" value="{{ old('skills') }}" required >
             </div>
 
             <div class="form-group">
-              <label for="">Professional skills <span class="text-info">( If multiple separate with "," )</span></label>
-              <input type="text" placeholder="Skill1,Skill2 etc" class="form-control @error('skills') is-invalid @enderror" name="skills" value="{{ old('skills') }}" required >
+              <div class="row">
+                <div class="col-md-6">
+                  <label for="">Qualification	</label>
+                  <select name="qualification" class="form-control" value="{{old('qualification')}}">
+                    @foreach (Config::get('constants.qualification') as $qualification)
+                      <option value="{{ $qualification }}">{{ $qualification }}</option>
+                    @endforeach
+                  </select>
+                </div>
+                <div class="col-md-6">
+                  <label for="">Year of Experience</label>
+                  <input type="number" class="form-control @error('year_of_experience') is-invalid @enderror" name="year_of_experience" value="{{ old('year_of_experience') }}" required >
+                  @error('year_of_experience')
+                      <span class="invalid-feedback" role="alert">
+                          <strong>{{ $message }}</strong>
+                      </span>
+                  @enderror
+                </div>
+              </div>
             </div>
 
             <div class="form-group">
@@ -173,7 +177,7 @@
               <div id="quillEditor" style="height:200px"></div>
             </div>
 
-            <button type="button" id="postBtn" class="btn primary-btn">Create Job listing</button>
+            <button type="button" id="postBtn" class="btn primary-btn">Create Job Post</button>
           </form>
         </div>
       </div>

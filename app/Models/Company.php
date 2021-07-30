@@ -10,7 +10,7 @@ class Company extends Model
     use HasFactory;
 
     public function industry(){
-        return $this->belongsTo(Industry::class);
+        return $this->hasOne('App\Models\Industry', 'id', 'industry_id');
     }
     public function province(){
         return $this->belongsTo(Province::class);

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Company;
 use App\Models\CompanyLogin;
 use App\Models\Industry;
+use App\Models\JobPost;
 use App\Models\Province;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -30,6 +31,42 @@ class CompanyController extends Controller
         return view('company.upload-job');
     }
 
+    public function storeJob(Request $request)
+    {
+        $this->validatePost($request);
+
+        $companyId = auth()->user()->id;
+
+        $postData = array_merge(['company_id' => auth()->user()->id], $request->all());
+
+        $post = JobPost::create($postData);
+        if ($post) {
+            Alert::toast('Job Posted!', 'success');
+            return redirect()->route('company.info');
+        }
+        Alert::toast('Job post failed!', 'warning');
+        return redirect()->back();
+
+    }
+    protected function validatePost(Request $request)
+    {
+        return $request->validate([
+            'job_title' => 'required|min:5',
+            'hire_amount' => 'required|numeric',
+            'job_level' => 'required',
+            'min_salary' => 'nullable|regex:/^\d+(\.\d{1,2})?$/',
+            'max_salary' => 'nullable|regex:/^\d+(\.\d{1,2})?$/',
+            'min_age' => 'nullable|numeric',
+            'max_age' => 'nullable|numeric',
+            'job_location' => 'required|string',
+            'languages' => 'required|string',
+            'deadline' => 'required',
+            'sex' => 'required|string|max:1',
+            'term' => 'required|string',
+            'skills' => 'required',
+            'qualification' => 'required|string',
+        ]);
+    }
     
     //! Company information----------------------------------------------------
     public function infoView()
