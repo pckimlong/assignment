@@ -20,7 +20,7 @@ class CreateJobPostActivitiesTable extends Migration
 
             $table->primary(['job_seeker_id','job_post_id']);
             $table->foreign('job_seeker_id')->references('id')->on('job_seekers');
-            $table->foreign('job_post_id')->references('id')->on('job_posts');
+            $table->foreign('job_post_id')->references('id')->on('job_posts')->onDelete('cascade');
         });
     }
 

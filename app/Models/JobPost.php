@@ -19,7 +19,7 @@ class JobPost extends Model
 
     public function activities()
     {
-        return $this->hasMany(JobPostActivity::class);
+        return $this->hasMany('App\Models\JobPostActivity', 'job_post_id', 'id');
     }
 
     public function deadlineTimestamp()
