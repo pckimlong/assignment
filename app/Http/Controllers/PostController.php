@@ -13,7 +13,6 @@ class PostController extends Controller
     public function index()
     {
         if(auth('company')->check()){
-            // return view('company.company-overview');
             return redirect(route('company.overview'));
         }
 

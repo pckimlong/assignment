@@ -13,8 +13,8 @@
       <a href="{{route('company.upload')}}" class="account-nav-link">
         <i class="fas fa-upload"></i> Upload a Job
     </li>
-    <li class="list-group-item list-group-item-action {{ request()->segment(2) == 'post' && request()->segment(3) == 'create' ? 'active': ''}}">
-      {{-- <a href="{{route('post.create')}}" class="account-nav-link"> --}}
+    <li class="list-group-item list-group-item-action {{ request()->segment(2) == 'list' ? 'active': ''}}">
+      <a href="{{route('company.job-list')}}" class="account-nav-link">
         <i class="fas fa-list"></i> Jobs List
     </li> 
     <li class="list-group-item list-group-item-action {{ request()->segment(2) == 'password' ? 'active': ''}}">
@@ -37,7 +37,7 @@
     </li>
     <li class="list-group-item list-group-item-action {{ request()->segment(2) == 'cv' ? 'active': ''}}">
       <a href="{{route('jobseeker.cv')}}" class="account-nav-link">
-        <i class="far fa-id-card"></i> CV
+        <i class="far fa-id-card"></i> Resume
       </a>
     </li>
     

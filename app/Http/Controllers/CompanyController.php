@@ -12,17 +12,40 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Validator;
 
 class CompanyController extends Controller
-{
-    public function __construct()
-    {
-        $this->middleware('auth:company');
-    }
-    
+{   
+    // public function __construct()
+    // {
+    //     $this->middleware('auth:company');
+    // }
+
     public function overview()
     {
         return view('company.company-overview');
+    }
+
+    //! View company-----------------------------------------------------
+    public function companyView($id)
+    {
+        $company = Company::findOrFail($id);
+        $jobs = JobPost::whereHas('company', function ($query) use ($company) {
+            return $query->where('company_id', $company->id);
+        })->where('is_active', true)->orderBy('id', 'desc')->get();
+        return view('company.company-view', [
+            'company' => $company,
+            'jobs' => $jobs,
+        ]);
+    }
+
+    //! Job List --------------------------------------------------------
+    public function jobListView()
+    {
+        $posts = JobPost::where('company_id', auth()->user()->id)->orderBy('is_active', 'desc')->orderBy('id', 'desc')->get();
+        return view('company.company-joblist')->with([
+            'posts' => $posts
+        ]);
     }
 
     //! Upload job----------------------------------------------------
@@ -83,10 +106,9 @@ class CompanyController extends Controller
     }
     public function update(Request $request)
     {
-        $this->validateCompanyUpdate($request);
-
+        $valid = $this->validateCompanyUpdate($request);
         $company = Company::find(auth()->user()->id);
-        if ($this->companyUpdate($company, $request)) {
+        if ($this->companyUpdate($company, $request) && $valid) {
             Alert::toast('Company updated!', 'success');
             return redirect()->route('company.info');
         }
@@ -95,7 +117,7 @@ class CompanyController extends Controller
     }
     protected function validateCompanyUpdate(Request $request)
     {
-        return $request->validate([
+        $validator = Validator::make($request->all(),[
             'company_name' => 'required|min:5',
             'description' => 'required|min:5',
             'logo' => 'image|max:2999',
@@ -104,6 +126,13 @@ class CompanyController extends Controller
             'address' => 'required|string',
             'phone' => 'required|numeric',
         ]);
+
+        if($validator->fails()){
+             redirect()->route('company.info')->withInput()->withErrors($validator);
+             return false;
+        }
+        return true;
+
     }
     protected function companyUpdate(Company $company, Request $request)
     {

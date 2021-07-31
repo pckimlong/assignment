@@ -3,6 +3,7 @@
 @section('content')
 <section class="show-page pt-4 mb-5">
   <div class="container">
+    <div class="row">
       <div class="col-sm-12 col-md-8">
         <div class="job-listing border">
           <div class="company-info">
@@ -24,25 +25,70 @@
               </div>
             </div>
 
-            {{-- company information --}}
-            <div class = "py-2">
-            <div class="px-3 py-1">
-              <span>
-                <i class ="fas fa-map-marker-alt icon-cog text-muted"></i>
-              </span>
-              <span>{{ $company->province->province }}</span>
-            </div>
-            <div class="px-3 py-1">
-              <span>
-                <i class ="fas fa-map-marker-alt icon-cog text-muted"></i>
-              </span>
-              <span>{{ $company->address }}</span>
-            </div>
             
-          </div>
+            <div class = 'py-3 px-4'>
+              <h6 class="m-b-20 m-t-40 p-b-5 b-b-default f-w-600">Website</h6>
+              <p class="m-b-10 f-w-600">{{ $company->website ?? ''}}</p>
+            </div>
+
+            <div class = 'py-3 px-4'>
+              <h6 class="m-b-20 m-t-40 p-b-5 b-b-default f-w-600">Location</h6>
+              <p class="m-b-10 f-w-600">{{ $company->province->province ?? ''}}</p>
+              <p class="m-b-10 f-w-600">{{ $company->address ?? ''}}</p>
+            </div>
+
+            <div class = 'py-3 px-4'>
+              <h6 class="m-b-20 m-t-40 p-b-5 b-b-default f-w-600">Contact Information</h6>
+              <p class="m-b-10 f-w-600">{{ $company->contact_person_name ?? ''}}</p>
+              <p class="m-b-10 f-w-600">{{ $company->phone ?? ''}}</p>
+              <p class="m-b-10 f-w-600">{{ $company->email ?? ''}}</p>
+            </div>
+
+            <div class = 'py-5 px-4'>
+              <h6 class="m-b-20 m-t-40 p-b-5 b-b-default f-w-600">Company Decription</h6>
+              <div class="py-2">
+                <p>{{$company->description}}</p>
+              </div>
+            </div>
+
+            
+            
           </div>
         </div>
       </div>
+
+      <div class="col-sm-12 col-md-4">
+        <div class="card ">
+          <div class="card-header">
+            Company Jobs ({{ $jobs->count() }} active jobs)
+          </div>
+          <div class="card-body">
+            <div class="similar-jobs">
+              @foreach ($jobs as $job)
+              @if($jobs)
+                <div class="job-item border-bottom row">
+                  <div class="job-desc col-8">
+                    <a href="{{route('post.show',['job'=>$job->id])}}" class="job-category text-muted font-weight-bold">
+                      <p class="text-muted h6">{{$job->job_title}}</p>
+                      <p class="small">{{$job->company->title}}</p>
+                      <p class="font-weight-normal small text-danger">Deadline: {{date('d',$job->remainingDays())}} days</p>
+                    </a>
+                  </div>
+                </div>
+                @else
+                <div class="card">
+                  <div class="card-header">
+                    <p>No active jobs</p>
+                  </div>
+                </div>
+                @endif
+              @endforeach
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    </div>
   </div>
 </section>
 
@@ -56,6 +102,11 @@
     overflow: hidden;
   }
 
+  .company-banner-img {
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+  }
 
   .banner-overlay {
     position: absolute;
@@ -97,8 +148,29 @@
     font-size: 1.3rem;
   }
 
+  .company-link:hover {
+    color: #ddd;
+  }
 
+  .job-title {
+    font-size: 1.3rem;
+    font-weight: bold;
+  }
 
+  .job-hdr {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: linear-gradient(to right, #e1edf7, #EDF2F7)
+  }
+
+  .job-item{
+    margin-bottom: .5rem;
+    padding:.5rem 0;
+  }
+  .job-item:hover {
+    background-color:#eee;
+  } 
 
 </style>
 @endpush

@@ -9,13 +9,12 @@
           <div class="company-info">
             <div class="company-banner">
               <div class="banner-overlay"></div>
-              {{-- <img src="{{asset('images/companies/nocover.jpg')}}" class="company-banner-img img-fluid" alt=""> --}}
               <div class="company-media">
                 <img src="{{asset($company->logo)}}" alt="" class="company-logo">
                 <div>
-                  {{-- <a href="{{route('account.employer',['employer'=>$company])}}" class="secondary-link"> --}}
-                    <p class="font-weight-bold">{{$company->company_name}}</p>
-                    <p class="company-category">{{$company->industry->name}}</p>
+                  <a href="{{ route('company', ['id'=>$company->id]) }}" class="secondary-link">
+                    <p class="font-weight-bold">{{$company->company_name ?? ''}}</p>
+                    <p class="company-category">{{$company->industry->name ?? ''}}</p>
                   </a>
                 </div>
               </div>
@@ -25,10 +24,23 @@
             </div>
 
             {{-- company information --}}
-            <div class="p-3">
-              <p>{{$company->description}}</p>
+            <div class = "py-2">
+            <div class="px-3 py-1">
+              <span>
+                <i class ="fas fa-map-marker-alt icon-cog text-muted"></i>
+              </span>
+              <span>{{ $company->province->province ?? '' }}</span>
             </div>
+            <div class="px-3 py-1">
+              <span>
+                <i class ="fas fa-map-marker-alt icon-cog text-muted"></i>
+              </span>
+              <span>{{ $company->address }}</span>
+            </div>
+            
           </div>
+          </div>
+
 
           {{-- job information --}}
           <div class="job-info">
@@ -50,7 +62,7 @@
                     <tr>
                       <td width="33%">Job Industry</td>
                       <td width="3%">:</td>
-                      <td width="64%"><a href="/jobs">{{$company->industry->name}}</a></td>
+                      <td width="64%"><a href="/jobs">{{$company->industry->name ?? ''}}</a></td>
                     </tr>
 
 
@@ -191,6 +203,7 @@
             </div>
           </div>
         </div>
+
         <div class="card ">
           <div class="card-header">
             Similar Jobs
@@ -222,6 +235,7 @@
             </div>
           </div>
         </div>
+        
       </div>
     </div>
   </div>

@@ -21,6 +21,8 @@ class JobSeekerController extends Controller
     {
         return view('jobseeker.job-seeker-account');
     }
+    //! apply job----------------------------------------------------
+    
 
     public function showCV()
     {

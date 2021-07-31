@@ -48,14 +48,19 @@ Route::post('company/login', [LoginController::class, 'companyLogin'])->name('co
 Route::get('company/registration', [RegisterController::class,'showCompanyRegisterForm'])->name('company.registration');
 Route::post('company/registration', [RegisterController::class,'createCompany'])->name('company.register');
 
-Route::get('company/dashboard', [CompanyController::class,'overview'])->name('company.dashboard');
-Route::get('company/overview', [CompanyController::class,'overview'])->name('company.overview');
-Route::get('company/password', [CompanyController::class,'changePasswordView'])->name('company.change.password');
-Route::put('company/password', [CompanyController::class,'changePassword'])->name('company.change.password');
-Route::get('company/info', [CompanyController::class,'infoView'])->name('company.info');
-Route::put('company/{id}', [CompanyController::class, 'update'])->name('company.update');
-Route::get('company/upload', [CompanyController::class,'uploadView'])->name('company.upload');
-Route::post('company/upload', [CompanyController::class,'storeJob'])->name('company.storejob');
+Route::get('company/view/{id}', [CompanyController::class, 'companyView'])->name('company');
+Route::group(['middleware' => ['auth:company']], function () {
+        Route::get('company/dashboard', [CompanyController::class,'overview'])->name('company.dashboard');
+        Route::get('company/overview', [CompanyController::class,'overview'])->name('company.overview');
+        Route::get('company/password', [CompanyController::class,'changePasswordView'])->name('company.change.password');
+        Route::put('company/password', [CompanyController::class,'changePassword'])->name('company.change.password');
+        Route::get('company/info', [CompanyController::class,'infoView'])->name('company.info');
+        Route::put('company/update', [CompanyController::class, 'update'])->name('company.update');
+        Route::get('company/upload', [CompanyController::class,'uploadView'])->name('company.upload');
+        Route::post('company/upload', [CompanyController::class,'storeJob'])->name('company.storejob');
+        Route::get('company/list', [CompanyController::class,'jobListView'])->name('company.job-list');
+});
+
 
 
 //! Job-----------------------------------------------------------------------------------------------------------------
