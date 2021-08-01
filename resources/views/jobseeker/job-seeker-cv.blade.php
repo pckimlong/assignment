@@ -25,6 +25,11 @@
                     @enderror
                   </div>
                 </div>
+                <div class="col-md-6">
+                  <div class="mx-2 text-primary d-flex flex-row-reverse font-weight-bold">
+                    <a href="">Preview</a>
+                  </div>
+                </div>
               </div>
             </div>
             

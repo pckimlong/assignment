@@ -15,8 +15,8 @@
                 <img src="{{asset($company->logo)}}" alt="" class="company-logo">
                 <div>
                   <a href="{{ route('company', ['id'=>$company->id]) }}" class="secondary-link">
-                    <p class="font-weight-bold">{{$company->company_name}}</p>
-                    <p class="company-category">{{$company->industry->name}}</p>
+                    <p class="font-weight-bold">{{$company->company_name ?? ''}}</p>
+                    <p class="company-category">{{$company->industry->name ?? ''}}</p>
                   </a>
                 </div>
               </div>

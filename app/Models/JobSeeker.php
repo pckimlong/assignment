@@ -25,9 +25,9 @@ class JobSeeker extends Model
     {
         return $this->hasOne(JobSeekerLogin::class, 'id', 'id');
     }
-    public function langauges()
+    public function savedJobs()
     {
-        return $this->belongsToMany(Language::class);
+        return $this->belongsToMany(JobPost::class, 'job_seeker_saved_jobs');
     }
     public function experiences()
     {

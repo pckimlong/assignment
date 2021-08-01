@@ -38,7 +38,9 @@ Route::get('job-seeker/cv', [JobSeekerController::class,'showCV'])->name('jobsee
 Route::put('job-seeker/cv', [JobSeekerController::class,'updateCV'])->name('jobseeker.cv.update');
 Route::get('job-seeker/password', [JobSeekerController::class,'changePasswordView'])->name('jobseeker.change.password');
 Route::put('job-seeker/password', [JobSeekerController::class,'changePassword'])->name('jobseeker.change.password');
-Route::get('job-seeker/saved-jobs', [JobSeekerController::class,'showCV'])->name('jobseeker.saved-job');
+Route::get('job-seeker/saved-jobs', [JobSeekerController::class,'showSavedJobs'])->name('jobseeker.saved-job');
+Route::get('job-seeker/saved-jobs/{jobId}', [JobSeekerController::class,'saveJob'])->name('jobseeker.save-job');
+Route::delete('job-seeker/unsaved-jobs/{jobId}', [JobSeekerController::class,'unsaveJob'])->name('jobseeker.unsave-job');
 Route::get('job-seeker/deativate', [JobSeekerController::class,'deactive'])->name('jobseeker.deativate');
 Route::delete('job-seeker/delete', [JobSeekerController::class,'deleteAccount'])->name('jobseeker.account.delete');
 // Route::get('job-seeker/logout', [JobSeekerController::class,'index'])->name('jobseeker.logout');

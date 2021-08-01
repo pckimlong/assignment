@@ -201,7 +201,15 @@
           <div class="card-body">
             <div class="btn-group w-100">
               <a href="" class="btn primary-outline-btn float-left">Apply Now</a>
-              <a href="" class="btn primary-btn"><i class="fas fa-star"></i> Save job</a>
+              @if ($hasSaved)
+              <form action="{{ route('jobseeker.unsave-job', ['jobId'=>$post->id]) }}" method="POST">
+                @csrf
+                @method("delete")
+                <button type="submit" href="#" class="btn primary-btn"></i>Unsave</button>
+              </form>
+              @else    
+                <a href="{{ route('jobseeker.save-job', ['jobId'=>$post->id]) }}" class="btn primary-btn"><i class="fas fa-star"></i> Save job</a>
+              @endif
             </div>
           </div>
         </div>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\JobSeeker;
 use App\Models\JobSeekerEducation;
 use App\Models\JobSeekerLogin;
+use App\Models\JobSeekerSavedJobs;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -26,6 +27,38 @@ class JobSeekerController extends Controller
     }
     //! apply job----------------------------------------------------
     
+
+    //! saved job----------------------------------------------------
+    public function saveJob($jobId)
+    {
+        $data = [
+            'job_seeker_id' => auth()->user()->id,
+            'job_post_id' => $jobId,
+        ];
+        $create = JobSeekerSavedJobs::create($data);
+        if($create){
+            Alert::toast('Save to list!', 'info');
+            return redirect()->back();
+        }
+        Alert::toast('Cannot save!', 'error');
+    }
+    public function unsaveJob($jobId)
+    {
+        $delete = JobSeekerSavedJobs::where('job_seeker_id', auth()->user()->id)->where('job_post_id', $jobId)->delete();
+        if($delete){
+            Alert::toast('Unsaved job!', 'info');
+            return redirect()->back();
+        }
+        Alert::toast('Failed!', 'error');
+    }
+    public function showSavedJobs()
+    {
+        $jobseeker = JobSeeker::find(auth()->user()->id);
+        $jobs = $jobseeker->savedJobs()->orderBy('updated_at', 'desc')->get();
+        return view('jobseeker.job-seeker-saved-job', [
+            'jobs' => $jobs,
+        ]);
+    }
 
     //! cv------------------------------------------------------------
     public function showCV()

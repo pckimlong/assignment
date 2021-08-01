@@ -56562,26 +56562,3 @@ module.exports = __webpack_require__(/*! D:\imp\job-lister-laravel-8\resources\s
 /***/ })
 
 /******/ });
-
-$('.custom-file-input').on('change', function() { 
-  let fileName = $(this).val().split('\\').pop(); 
-  $(this).next('.custom-file-label').addClass("selected").html(fileName); 
-});
-
-$(document).ready(function(){
-  let row_number = 1;
-  $("#add_row").click(function(e){
-    e.preventDefault();
-    let new_row_number = row_number - 1;
-    $('#tbEducation').append('<tr><td width="33%">Hello</td></tr>');
-    row_number++;
-  });
-  
-  $("#delete_row").click(function(e){
-    e.preventDefault();
-    if(row_number > 1){
-      $("#product" + (row_number - 1)).html('');
-      row_number--;
-    }
-  });
-});
