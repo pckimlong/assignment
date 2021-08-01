@@ -14,20 +14,18 @@ class CreateJobSeekerExperiencesTable extends Migration
     public function up()
     {
         Schema::create('job_seeker_experiences', function (Blueprint $table) {
+            $table->id();
             $table->unsignedBigInteger('job_seeker_id', false);
-            $table->timestamp('start_date')->nullable();
+            $table->timestamp('start_date')->nullable(false);
             $table->timestamp('end_date')->nullable();
 
             $table->boolean('is_current_job')->default(false);
-            $table->string('job_name', 100);
-            $table->string('work_place_name', 100);
-            $table->text('job_address')->nullable();
-            $table->unsignedBigInteger('province_id', false)->nullable();
+            $table->string('job_name', 100)->nullable(false);
+            $table->string('company', 100)->nullable(false);
+            $table->longText('description')->nullable();
             $table->timestamps();
 
-            // $table->primary(['job_seeker_id', 'start_date','end_date']);
-            $table->foreign('job_seeker_id')->references('id')->on('job_seekers');
-            $table->foreign('province_id')->references('id')->on('provinces');
+            $table->foreign('job_seeker_id')->references('id')->on('job_seekers')->onDelete('cascade');
         });
     }
 

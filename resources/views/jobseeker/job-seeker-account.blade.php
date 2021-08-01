@@ -12,7 +12,7 @@
                 <div class="row m-l-0 m-r-0">
                     <div class="col-sm-4 bg-c-lite-green user-profile">
                         <div class="card-block text-center text-white">
-                            <div class="m-b-25"> <img src="{{asset('images/user-profile.png')}}" class="img-radius" alt="User-Profile-Image"> </div>
+                            <div class="m-b-25"> <img src="{{asset(auth()->user()->jobseeker->avatar())}}" width="120px" class="img-thumbnail" alt="User-Profile-Image"> </div>
                             <h6 class="f-w-600">{{ auth()->user()->jobseeker->fullname() }}</h6>
                         </div>
                     </div>

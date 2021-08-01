@@ -19,10 +19,14 @@ class CreateJobSeekersTable extends Migration
             $table->string('lastname', 30)->nullable(false);
             $table->string('phone_number', 10)->nullable(false);
             $table->char('gender', 1)->nullable();
-            $table->timestamp('birthdate')->nullable();
+            $table->date('birthdate')->nullable();
             $table->binary('profile_image')->nullable();
             $table->text('current_address')->nullable();
-            $table->text('qualification')->nullable();
+            $table->text('marital_status')->nullable();
+            $table->longText('languages')->nullable();
+            $table->longText('nationality')->nullable();
+            $table->longText('hobbies')->nullable();
+            $table->longText('skills')->nullable();
             $table->timestamps();
         });
     }

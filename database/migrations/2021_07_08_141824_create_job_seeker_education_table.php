@@ -18,14 +18,14 @@ class CreateJobSeekerEducationTable extends Migration
             $table->unsignedBigInteger('job_seeker_id', false);
             $table->text('certification')->nullable(false);
             $table->text('major')->nullable(false);
-            $table->text('university_name')->nullable(false);
-            $table->timestamp('start_date')->nullable();
+            $table->text('school_name')->nullable(false);
+            $table->timestamp('start_date')->nullable(false);
             $table->timestamp('graduated_date')->nullable();
-            $table->double('percantage', 15, 8)->nullable();
-            $table->double('gpa', 15, 8)->nullable();
+            $table->boolean('is_current')->default(false);
+            $table->longText('description')->nullable();
             $table->timestamps();
 
-            $table->foreign('job_seeker_id')->references('id')->on('job_seekers');
+            $table->foreign('job_seeker_id')->references('id')->on('job_seekers')->onDelete('cascade');
         });
     }
 

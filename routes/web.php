@@ -35,6 +35,7 @@ Route::post('job-seeker/registration', [RegisterController::class,'createJobSeek
 
 Route::get('job-seeker/overview', [JobSeekerController::class,'index'])->name('jobseeker.overview');
 Route::get('job-seeker/cv', [JobSeekerController::class,'showCV'])->name('jobseeker.cv');
+Route::put('job-seeker/cv', [JobSeekerController::class,'updateCV'])->name('jobseeker.cv.update');
 Route::get('job-seeker/password', [JobSeekerController::class,'changePasswordView'])->name('jobseeker.change.password');
 Route::put('job-seeker/password', [JobSeekerController::class,'changePassword'])->name('jobseeker.change.password');
 Route::get('job-seeker/saved-jobs', [JobSeekerController::class,'showCV'])->name('jobseeker.saved-job');

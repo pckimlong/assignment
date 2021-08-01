@@ -16,5 +16,18 @@ class JobSeekerExperience extends Model
     {
         return $this->belongsTo(Province::class);
     }
+    public function startYear()
+    {
+        return date('Y', strtotime($this->start_date));
+    }
+
+    public function endYear()
+    {
+        if($this->is_current_job){
+            return 'Present';
+        }else{
+            return date('Y', strtotime($this->end_date));
+        }
+    }
     
 }

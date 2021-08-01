@@ -16,9 +16,14 @@ class JobSeeker extends Model
         return "{$this->firstname} {$this->lastname}";
     }
 
+    public function avatar()
+    {
+        return $this->profile_image ?? 'images/user-profile.png';
+    }
+
     public function login()
     {
-        return $this->hasOne(JobSeekerLogin::class);
+        return $this->hasOne(JobSeekerLogin::class, 'id', 'id');
     }
     public function langauges()
     {
@@ -26,14 +31,10 @@ class JobSeeker extends Model
     }
     public function experiences()
     {
-        return $this->hasMany(JobSeekerExperience::class);
+        return $this->hasMany(JobSeekerExperience::class)->orderBy('start_date', 'desc');
     }
     public function educations()
     {
-        return $this->hasMany(JobSeekerEducation::class);
-    }
-    public function skills()
-    {
-        return $this->belongsToMany(SkillSet::class);
+        return $this->hasMany(JobSeekerEducation::class, 'job_seeker_id', 'id')->orderBy('start_date', 'desc');
     }
 }

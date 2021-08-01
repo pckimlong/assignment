@@ -52,6 +52,7 @@
                 </p>
               </div>
             </div>
+            
             <div class="job-bdy p-3 my-3">
               <div class="job-level-description">
                 <p class="font-weight-bold">Basic job level description</p>
@@ -128,6 +129,7 @@
                   </tbody>
                 </table>
               </div>
+              
               <div class="job-level-description">
                 <p class="font-weight-bold">Job Specification</p>
                 <table class="table table-hover">
