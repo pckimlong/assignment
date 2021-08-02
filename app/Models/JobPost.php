@@ -19,9 +19,14 @@ class JobPost extends Model
 
     public function activities()
     {
-        return $this->hasMany('App\Models\JobPostActivity', 'job_post_id', 'id');
+        return $this->belongsToMany(JobSeeker::class, 'job_post_activities');
     }
 
+    public function getActivityAppliedDate($jobseekerId)
+    {
+        $date = JobPostActivity::where('job_seeker_id', $jobseekerId)->where('job_post_id', $this->id)->first()->created_at;
+        return Carbon::parse($date)->timestamp;
+    }
     public function deadlineTimestamp()
     {
         return Carbon::parse($this->deadline)->timestamp;

@@ -10,7 +10,6 @@
               <a href="{{route('jobseeker.registration')}}" class="footer-links">Register <span class="badge badge-primary">Free</span></a>
              <a href="{{route('login')}}" class="footer-links">Login</a> 
              <a href="" class="footer-links">Find jobs</a>
-             <a href="#" class="footer-links">Faq</a>
             </div>
           </div>
         </div>
@@ -21,8 +20,6 @@
             <div class="footer-link-list">
              <a href="{{route('company.registration')}}" class="footer-links">Register <span class="badge badge-primary">Free</span></a>
              <a href="{{route('company.login')}}" class="footer-links">Login</a>
-             {{-- <a href="{{route('post.create')}}" class="footer-links">Vacancy Announcement</a> --}}
-             <a href="#" class="footer-links">Faq</a>
             </div>
           </div>
         </div>
@@ -35,7 +32,6 @@
              <a href="#" class="footer-links">About Us</a>
              <a href="#" class="footer-links">Advertise</a>
              <a href="#" class="footer-links">Contact Us</a>
-             <a href="#" class="footer-links">Faq</a>
             </div>
           </div>
         </div>
@@ -44,8 +40,7 @@
             <h3 class="footer-brand mb-2">JobPosting</h3>
             <div class="footer-link-list">
              <a href="#" class="footer-links"><i class="fas fa-compass"></i>Norton, Phnom Penh, Cambodia</a>
-             <a href="tel:98400001511" class="footer-links"><i class="fas fa-phone"></i> +977-6000-000</a>
-             <a href="tel:98400001511" class="footer-links"><i class="fas fa-mobile"></i> +977-9840003200</a>
+             <a href="#" class="footer-links"><i class="fas fa-phone"></i> +855-96-888-43-88</a>
              <a href="mailto:info@JobPosting.com" class="footer-links"><i class="fas fa-envelope"></i> info@JobPosting.com</a>
              <div class="social-links">
                <a href="https://www.facebook.com" target="_blank" class="social-link"><i class="fab fa-facebook"></i></a>

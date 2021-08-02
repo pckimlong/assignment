@@ -29,6 +29,10 @@ class JobSeeker extends Model
     {
         return $this->belongsToMany(JobPost::class, 'job_seeker_saved_jobs');
     }
+    public function appliedJobs()
+    {
+        return $this->belongsToMany(JobPost::class, 'job_post_activities');
+    }
     public function experiences()
     {
         return $this->hasMany(JobSeekerExperience::class)->orderBy('start_date', 'desc');

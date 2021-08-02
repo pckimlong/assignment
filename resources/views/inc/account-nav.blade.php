@@ -35,17 +35,21 @@
         <i class="fas fa-user-shield"></i> Account
       </a>
     </li>
+    <li class="list-group-item list-group-item-action {{ request()->segment(2) == 'applied' ? 'active': ''}}">
+      <a href="{{route('jobseeker.applied')}}" class="account-nav-link">
+        <i class="fas fa-stream"></i> Applied Jobs
+      </a>
+    </li>
     <li class="list-group-item list-group-item-action {{ request()->segment(2) == 'cv' ? 'active': ''}}">
       <a href="{{route('jobseeker.cv')}}" class="account-nav-link">
         <i class="far fa-id-card"></i> Resume
       </a>
     </li>
-    
     <li class="list-group-item list-group-item-action {{ request()->segment(2) == 'password' ? 'active': ''}}">
       <a href="{{route('jobseeker.change.password')}}" class="account-nav-link">
         <i class="fas fa-fingerprint"></i> Change Password
       </a>
-    </li>    
+    </li>       
     <li class="list-group-item list-group-item-action {{ request()->segment(2) == 'saved-jobs' ? 'active': ''}}">
       <a href="{{route('jobseeker.saved-job')}}" class="account-nav-link">
         <i class="fas fa-stream"></i> My saved Jobs

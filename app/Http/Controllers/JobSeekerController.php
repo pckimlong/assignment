@@ -35,6 +35,17 @@ class JobSeekerController extends Controller
     }
 
     //! apply job----------------------------------------------------
+    public function appliedJobView()
+    {
+        $jobseeker = JobSeeker::find(auth()->user()->id);
+        $jobs = $jobseeker->appliedJobs()->orderBy('updated_at', 'desc')->get();
+        return view('jobseeker.applied-job',
+            [
+                'jobs' => $jobs,
+                'jobseeker' => $jobseeker,
+            ]
+        );
+    }
     public function applyJob($jobId)
     {   
         $seeker = JobSeeker::find(auth()->user()->id);

@@ -46,8 +46,9 @@ Route::get('job-seeker/saved-jobs/{jobId}', [JobSeekerController::class,'saveJob
 Route::delete('job-seeker/unsaved-jobs/{jobId}', [JobSeekerController::class,'unsaveJob'])->name('jobseeker.unsave-job');
 Route::get('job-seeker/deativate', [JobSeekerController::class,'deactive'])->name('jobseeker.deativate');
 Route::delete('job-seeker/delete', [JobSeekerController::class,'deleteAccount'])->name('jobseeker.account.delete');
+Route::get('job-seeker/applied', [JobSeekerController::class,'appliedJobView'])->name('jobseeker.applied');
 Route::get('job-seeker/apply/{jobId}', [JobSeekerController::class,'applyJob'])->name('jobseeker.apply');
-Route::get('job-seeker/cancel-apply/{jobId}', [JobSeekerController::class,'cancelApply'])->name('jobseeker.cancel.apply');
+Route::delete('job-seeker/cancel-apply/{jobId}', [JobSeekerController::class,'cancelApply'])->name('jobseeker.cancel.apply');
 });
 
 //! Company--------------------------------------------------------------------------------------------------------------
