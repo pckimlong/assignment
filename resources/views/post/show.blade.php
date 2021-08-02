@@ -250,7 +250,7 @@
           </div>
         </div>
         
-        @include('modal.cv-modal', ['jobseeker' => $jobseeker, 'jobId' => $post->id])
+        @include('modal.apply-job', ['jobseeker' => $jobseeker, 'jobId' => $post->id])
 
       </div>
     </div>

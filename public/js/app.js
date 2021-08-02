@@ -57311,7 +57311,7 @@ $(document).ready(function() {
     $("body").on("click", "#applyJob", function(e) {
 
         e.preventDefault;
-        $('#apply-job-modal').modal('show');
+        $('#applyJob_modal').modal('show');
 
     });
 

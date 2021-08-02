@@ -209,5 +209,6 @@
       </div>
     </div>
   </div>
+  @include('modal.preview-modal')
 @endsection
 

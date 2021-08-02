@@ -37,4 +37,16 @@ class JobSeeker extends Model
     {
         return $this->hasMany(JobSeekerEducation::class, 'job_seeker_id', 'id')->orderBy('start_date', 'desc');
     }
+    public function getLanguages()
+    {
+        return explode(',', $this->languages);
+    }
+    public function getHobbies()
+    {
+        return explode(',', $this->hobbies);
+    }
+    public function getSkills()
+    {
+        return explode(',', $this->skills);
+    }
 }
