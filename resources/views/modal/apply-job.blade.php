@@ -10,18 +10,27 @@
         <div class="modal-body">
             @if ($jobseeker)
             <form action = "{{ route('jobseeker.apply', ['jobId' => $jobId]) }}">
-                <div class="form-group">
-                    <div class="col-md-14">
-                        <div class="alert alert-primary">Your detail will send to company</div>
-                  </div>
-                    <div class="mx-2 text-primary d-flex flex-row-reverse font-weight-bold text-center float-left">
-                        <a href="javascript:void(0)" id="showCv">Preview CV</a>
+                {{-- <div class="form-group">
+                      <div class="col-md-14">
+                        <div class="row">
+                          <div class="alert alert-primary">Your detail will send to company</div>
+                          <button href="submit" class="btn primary-btn float-right"></i>Apply</button>
+                        </div>
                     </div>
-                    <button href="submit" class="btn primary-btn float-right"></i>Apply</button>
+                  </div> --}}
+                  <div class="form-group">
+                    <div class="row">
+                      <div class="col-md-10">
+                        <div class="alert alert-primary">Your resume data will send to company</div>
+                      </div>
+                      <div class="col-md-2 mt-1">
+                        <button href="submit" class="btn primary-btn float-right"></i>Apply Now</button>
+                      </div>
+                    </div>
                   </div>
                   @include('modal.cv-body', ['jobseeker'=>$jobseeker])
-            </form>
-            @else
+                </form>
+                @else
                 <div class="row px-3">
                     <div class="">
                         <a href="{{ route('login') }}" class="text-primary">You need to login first</i></a>
