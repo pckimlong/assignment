@@ -54,8 +54,8 @@
 </template>
 
 <script>
-import Sidebar from "./Sidebar";
-import SearchResult from "./SearchResult";
+import Sidebar from "./Sidebar.vue";
+import SearchResult from "./SearchResult.vue";
 
 export default {
   name: "job-component",

@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import SearchBar from "./SearchBar";
+import SearchBar from "./SearchBar.vue";
 export default {
   name: "app-component",
   components: {

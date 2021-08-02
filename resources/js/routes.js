@@ -1,7 +1,7 @@
-import JobComponent from "./components/JobComponent";
-import Organization from "./pages/Organization";
-import JobCategory from "./pages/JobCategory";
-import JobTitle from "./pages/JobTitle";
+import JobComponent from "./components/JobComponent.vue";
+import Organization from "./pages/Organization.vue";
+import JobCategory from "./pages/JobCategory.vue";
+import JobTitle from "./pages/JobTitle.vue";
 
 const routes = [
     {
