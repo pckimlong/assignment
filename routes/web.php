@@ -25,6 +25,7 @@ Route::get('/', [PostController::class, 'index'])->name('index');
 Route::get('/job/{job}', [PostController::class, 'show'])->name('post.show');
 
 Route::get('/search', [JobController::class, 'index'])->name('job.index');
+Route::get('/jobsearch', [JobController::class, 'search'])->name('job.search');
 
 
 //! Job seeker----------------------------------------------------------------------------------------------------------
@@ -32,7 +33,9 @@ Route::get('job-seeker/login', [LoginController::class, 'showJobSeekerLoginForm'
 Route::post('job-seeker/login', [LoginController::class, 'jobSeekerLogin'])->name('jobseeker.loginNow');
 Route::get('job-seeker/registration', [RegisterController::class,'showJobSeekerRegisterForm'])->name('jobseeker.registration');
 Route::post('job-seeker/registration', [RegisterController::class,'createJobSeeker'])->name('jobseeker.register');
+Route::get('job-seeker/preview', [JobSeekerController::class,'previewCV'])->name('jobseeker.preview');
 
+Route::group(['middleware' => ['auth:jobseeker']], function () {
 Route::get('job-seeker/overview', [JobSeekerController::class,'index'])->name('jobseeker.overview');
 Route::get('job-seeker/cv', [JobSeekerController::class,'showCV'])->name('jobseeker.cv');
 Route::put('job-seeker/cv', [JobSeekerController::class,'updateCV'])->name('jobseeker.cv.update');
@@ -43,7 +46,9 @@ Route::get('job-seeker/saved-jobs/{jobId}', [JobSeekerController::class,'saveJob
 Route::delete('job-seeker/unsaved-jobs/{jobId}', [JobSeekerController::class,'unsaveJob'])->name('jobseeker.unsave-job');
 Route::get('job-seeker/deativate', [JobSeekerController::class,'deactive'])->name('jobseeker.deativate');
 Route::delete('job-seeker/delete', [JobSeekerController::class,'deleteAccount'])->name('jobseeker.account.delete');
-// Route::get('job-seeker/logout', [JobSeekerController::class,'index'])->name('jobseeker.logout');
+Route::get('job-seeker/apply/{jobId}', [JobSeekerController::class,'applyJob'])->name('jobseeker.apply');
+Route::get('job-seeker/cancel-apply/{jobId}', [JobSeekerController::class,'cancelApply'])->name('jobseeker.cancel.apply');
+});
 
 //! Company--------------------------------------------------------------------------------------------------------------
 Route::get('company/login', [LoginController::class, 'showCompanyLoginForm'])->name('company.login');

@@ -18,7 +18,7 @@ class CreateJobPostsTable extends Migration
             $table->bigInteger('company_id', false, true);
             $table->text('job_title')->nullable(false);
             $table->boolean('is_active')->nullable(false)->default(true);
-            $table->boolean('is_urgent')->nullable(false)->default(false);
+            // $table->boolean('is_urgent')->nullable(false)->default(false);
             $table->integer('hire_amount')->unsigned()->nullable(false)->default(1);
             $table->text('job_level')->nullable(false);
             $table->decimal('min_salary', 8, 2)->nullable();

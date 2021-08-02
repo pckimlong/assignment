@@ -200,7 +200,11 @@
           </div>
           <div class="card-body">
             <div class="btn-group w-100">
-              <a href="" class="btn primary-outline-btn float-left">Apply Now</a>
+              @if ($hasApplied)
+                <a href="{{ route('jobseeker.cancel.apply', ['jobId' => $post->id]) }}" class="btn primary-outline-btn float-left">Cancel Apply</a>
+              @else
+                <a href="javascript:void(0)" class="btn primary-outline-btn float-left" id="applyJob">Apply Now</a>
+              @endif
               @if ($hasSaved)
               <form action="{{ route('jobseeker.unsave-job', ['jobId'=>$post->id]) }}" method="POST">
                 @csrf
@@ -246,6 +250,8 @@
           </div>
         </div>
         
+        @include('modal.cv-modal', ['jobseeker' => $jobseeker, 'jobId' => $post->id])
+
       </div>
     </div>
   </div>

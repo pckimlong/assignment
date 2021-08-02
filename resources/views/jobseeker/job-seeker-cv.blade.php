@@ -27,7 +27,7 @@
                 </div>
                 <div class="col-md-6">
                   <div class="mx-2 text-primary d-flex flex-row-reverse font-weight-bold">
-                    <a href="">Preview</a>
+                    <a href="javascript:void(0)" id="showCv">Preview CV</a>
                   </div>
                 </div>
               </div>

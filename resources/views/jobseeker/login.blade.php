@@ -54,14 +54,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-sm-12 col-md-6 px-0">
-            <div class="login-poster">
-                {{-- <img src="" alt=""> --}}
-                <h2 class="mb-3 slogon">Mark yourself as <br>Actively Job seeker</h2>
-                <p class="text-white lead">We have enabled this feature targeting superheros
-                    who lost their jobs during this crisis.</p>
-            </div>
-        </div>
+        
     </div>
 </div>
 @endsection

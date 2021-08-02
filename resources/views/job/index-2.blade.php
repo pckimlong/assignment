@@ -1,10 +1,12 @@
 @extends('layouts.job')
 @section('content')
 
-<div class="card search-bar mt-2 mb-2 px-0 py-4">
+<form action="{{route('job.search')}}"  method="GET">
+
+<div class="card search-bar mt-2 mb-2 px-0 py-5">
     <div class="row">
       <div class="col-md-6 offset-md-3">
-        <form>
+        
           <div class="row m-1">
             <div class="col-md-12 input-group">
               <input
@@ -12,35 +14,16 @@
                 name="q"
                 class="form-control"
                 placeholder="Search By Job Title"
-                v-model="jobTitle"
+                value = "{{ old('q')?? $q }}"
               />
               <span class="input-group-append">
-                <button class="btn btn-success pt-1" @click="searchByTitle">
+                <button class="btn btn-success pt-1" type = "submit">
                   <span class="icon-search"></span> Search Jobs
                 </button>
               </span>
             </div>
           </div>
-        </form>
-      </div>
-      <div class="col-sm-12 col-md-6 offset-md-3 small text-center my-2">
-        <div class="row">
-          <div class="col-sm-6 col-md-3">
-            <router-link to="/">All Jobs</router-link>
-          </div>
-          <div class="col-sm-6 col-md-3">
-            <router-link to="/jobs-by-organization"
-              >By Organisation
-            </router-link>
-          </div>
-          <div class="col-sm-6 col-md-3">
-            <router-link to="/jobs-by-category">By Job Category</router-link>
-          </div>
-          <div class="col-sm-6 col-md-3">
-            <router-link to="/jobs-by-title">By Job Title</router-link>
-          </div>
-        </div>
-      </div>
+      </div>     
     </div>
 </div>
   
@@ -70,25 +53,21 @@
           <div class="card border-top-0">
             <div class="card-body p-3" id="jobCategories">
               <div class="pb-0">
-                <div class="card-title mb-1">Job Categories</div>
+                <div class="card-title mb-1">Job Industry</div>
                 <div class="card-body p-0">
                   <div class="form-group">
                     <select
-                      name="job_category"
+                     onchange="this.form.submit()"
+                      name="industry_id"
                       class="form-control"
                       placeholder="Filter by Job Category"
-                      @change="filterCategory($event)"
                     >
-                      <option disabled selected value>
+                      <option  selected value = 0>
                         -- select an option --
                       </option>
-                      <option
-                        v-for="category in categories"
-                        :value="category.id"
-                        :key="category.id"
-                      >
-                        {{-- {{ category.category_name }} --}}
-                      </option>
+                      @foreach ($industries as $industry)
+                        <option value="{{$industry->id}}" {{ $industry->id == $industry_id ? 'selected' : '' }}>{{$industry->name}}</option>
+                    @endforeach
                     </select>
                   </div>
                 </div>
@@ -99,41 +78,33 @@
                 <div class="card-body p-0">
                   <div class="form-group">
                     <select
-                      name="job_category"
+                      name="job_level"
                       class="form-control"
-                      placeholder="Filter by Job Category"
-                      @change="filterJobLevel($event)"
+                      onchange="this.form.submit()"
                     >
-                      <option disabled selected value>
+                      <option  selected value>
                         -- select an option --
                       </option>
-                      <option value="Senior level">Senior level</option>
-                      <option value="Mid level">Mid level</option>
-                      <option value="Top level">Top level</option>
-                      <option value="Entry level">Entry level</option>
+                    @foreach (Config::get('constants.job_level') as $levelL)
+                      <option value="{{ $levelL }}" {{ $levelL == $job_level ? 'selected' : '' }}>{{ $levelL }}</option>
+                    @endforeach
                     </select>
                   </div>
                 </div>
               </div>
               <hr class="my-3" />
               <div class="pb-0">
-                <div class="card-title mb-1">Eductation</div>
+                <div class="card-title mb-1">Qualification</div>
                 <div class="card-body p-0">
                   <div class="form-group">
                     <select
-                      name="job_category"
+                      name="qualification"
                       class="form-control"
-                      placeholder="Filter by Job Category"
-                      @change="filterEducation($event)"
+                      onchange="this.form.submit()"
                     >
-                      <option disabled selected value>
-                        -- select an option --
-                      </option>
-                      <option value="Bachelors">Bachelors</option>
-                      <option value="High School">High School</option>
-                      <option value="Master">Master</option>
-                      <option value="SEE Mid School">SEE Mid School</option>
-                      <option value="Other">Other</option>
+                    @foreach (Config::get('constants.qualification') as $qualificationL)
+                      <option value="{{ $qualificationL }}" {{ $qualificationL == $qualification ? 'selected' : '' }}>{{ $qualificationL }}</option>
+                    @endforeach
                     </select>
                   </div>
                 </div>
@@ -141,25 +112,21 @@
               <hr class="my-3"/>
               <div class="pb-0">
                 <div class="card-title mb-1">
-                    Employment Type
+                    Term
                 </div>
                 <div class="card-body p-0">
                   <div class="form-group">
                     <select
-                      name="job_category"
+                      name="term"
                       class="form-control"
-                      placeholder="Filter by Job Category"
-                      @change="filterEmploymentType($event)"
+                      onchange="this.form.submit()"
                     >
-                      <option disabled selected value>
+                      <option  selected value>
                         -- select an option --
                       </option>
-                      <option value="Full Time">Full Time</option>
-                      <option value="Part Time">Part Time</option>
-                      <option value="Freelance">Freelance</option>
-                      <option value="Internship">Internship</option>
-                      <option value="Trainneship">Trainneship</option>
-                      <option value="Volunter">Volunter</option>
+                    @foreach (Config::get('constants.term') as $terml)
+                      <option value="{{ $terml }}" {{ $terml == $term ? 'selected' : '' }}>{{ $terml }}</option>
+                    @endforeach
                     </select>
                   </div>
                 </div>
@@ -170,7 +137,7 @@
     </div>
 
     <div class="col-sm-12 col-md-7 col-xl-8">
-    @if ($posts)
+    @if ($posts->count()>0)
         <div class="card">
             <div class="search-result">
 
@@ -179,7 +146,7 @@
                     <div class="card-body row p-3">
                         <div class="col-6">
                             <h1 class="h6" id="job-count">
-                                Showing 1 - 20 job of 200
+                                Showing {{ $posts->firstItem() }} - {{ $posts->lastItem() }} job of {{ $posts->total() }}
                             </h1>
                         </div>
                         <div class="col-6">
@@ -187,7 +154,7 @@
                                 <li class="nav-item mr-3">
                                   <a href="#" class="text-secondary">
                                     <span class="icon-calendar"></span>
-                                    Posted: <span id="date_val"> All time </span>
+                                    Posted: <span > All time </span>
                                   </a>
                                 </li>
                             </ul>
@@ -264,15 +231,8 @@
             </div>
         </div>
         <div class="my-4 text-center small">
-            <div class="d-block py-2 text-muted">
-              10 Total Jobs found with matching search
-            </div>
             <div class="d-flex justify-content-center">
-              <pagination
-                class="custom-pagination"
-                :data="posts"
-                @pagination-change-page="getJobs"
-              ></pagination>
+                {{ $posts->links() }}
             </div>
           </div>
     @else
@@ -289,12 +249,26 @@
     </div>
 
 </div>
+</form>
 @endsection
 
 @push('css')
     <style scoped>
         .search-bar {
         background-color: #f5fdff;
+        }
+        .card-list-component {
+        width: 100%;
+        padding: 0.5rem 0.25rem;
+        color: #888;
+        cursor: pointer;
+        margin-bottom: 1rem;
+        }
+        .card-list-component:hover {
+        background-color: #f5fdff;
+        }
+        .hover-shadow:hover {
+        box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.25);
         }
     </style>
 @endpush

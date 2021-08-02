@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class JobPostActivity extends Model
 {
+    protected $fillable = ['job_seeker_id', 'job_post_id'];
     use HasFactory;
 
     public function jobSeeker()

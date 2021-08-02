@@ -15,7 +15,6 @@ return [
         "Master's Degree",
         "Doctorate Degree",
         "Professional Degrees",
-        "Bachelor's Degree",
         "Other",
     ],
     'job_level' => [

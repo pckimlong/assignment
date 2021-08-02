@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\JobPostActivity;
 use App\Models\JobSeeker;
 use App\Models\JobSeekerEducation;
 use App\Models\JobSeekerLogin;
@@ -16,17 +17,58 @@ use Illuminate\Support\Facades\Storage;
 
 class JobSeekerController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth:jobseeker')->except(route('index'));
-    }
-
     public function index()
     {
         return view('jobseeker.job-seeker-account');
     }
+    //! public ------------------------------------------------------
+    public function previewCV()
+    {
+        $jobseeker = JobSeeker::find(auth()->user()->id);
+        $educations = $jobseeker->educations;
+        $experiences = $jobseeker->experiences;
+        return view('jobseeker.job-seeker-cv',[
+            'jobseeker' => $jobseeker,
+            'educations' => $educations,
+            'experiences' => $experiences,
+        ]);
+    }
+
     //! apply job----------------------------------------------------
-    
+    public function applyJob($jobId)
+    {   
+        $seeker = JobSeeker::find(auth()->user()->id);
+        if($seeker->gender == null){
+            
+        }else{
+            if(JobPostActivity::where('job_seeker_id', $seeker->id)->where('job_post_id', $jobId)->exists()){
+                Alert::toast('You already applied!', 'error');
+                return redirect()->back();
+            }else{
+                $data = [
+                    'job_seeker_id' => auth()->user()->id,
+                    'job_post_id' => $jobId,
+                ];
+                $create = JobPostActivity::create($data);
+                if($create){
+                    Alert::toast('Applied!', 'info');
+                    return redirect()->back();
+                }
+                Alert::toast('Cannot applied!', 'error');
+                return redirect()->back();
+            }
+        }
+    }
+    public function cancelApply($jobId)
+    {   
+        $delete = JobPostActivity::where('job_seeker_id', auth()->user()->id)->where('job_post_id', $jobId)->delete();
+        if($delete){
+            Alert::toast('Cancel apply!', 'info');
+            return redirect()->back();
+        }
+        Alert::toast('Failed!', 'error');
+        return redirect()->back();
+    }
 
     //! saved job----------------------------------------------------
     public function saveJob($jobId)

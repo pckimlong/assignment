@@ -6,12 +6,12 @@
       Company information
     </div>
     <div class="account-bdy p-3">
-     <form action="{{route('company.update')}}" method="POST" enctype="multipart/form-data">
+     <form action="{{route('company.update')}}"  method="POST" enctype="multipart/form-data">
         @csrf
         @method('put')
         <div class="pb-3">
-          <div class="py-2">
-            <img src="{{asset($company->logo)}}" width="200px" alt="">
+          <div class="py-3">
+            <img src="{{asset($company->logo)}}" width="100px" alt="">
           </div>
 
           <div class="custom-file">
