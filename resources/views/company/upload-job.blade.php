@@ -17,11 +17,9 @@
                   <p class="text-primary mb-4">Fill in all fields to create a job post</p>
                 </div>
                 <div class="col-md-6">
-                    <div class="col-md-6">
-                      <label for="">Deadline</label>
-                      <input type="date" class="form-control @error('deadline') is-invalid @enderror" name="deadline" value="{{ old('deadline') }}" required >
-                    </div>
-                  </div>
+                  <label for="">Deadline</label>
+                  <input type="date" class="form-control @error('deadline') is-invalid @enderror" name="deadline" value="{{ old('deadline') }}" required >
+                </div>
               </div>
             </div>
             @csrf

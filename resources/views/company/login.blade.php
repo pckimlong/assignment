@@ -6,7 +6,7 @@
         <div class="col-sm-12 col-md-6 px-0">
             <div class="login-container">
                 <div class="login-header mb-3">
-                    <h3> <img src="{{asset('images/logo/JobPosting.png')}}" width="50px;" alt="">Company Login</h3>
+                    <h3>Company Login</h3>
                 </div>
                 <div class="login-form">
                     <form action="{{ route('company.loginNow') }}" method="POST">

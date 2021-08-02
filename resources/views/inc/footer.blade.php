@@ -9,7 +9,7 @@
             <div class="footer-link-list">
               <a href="{{route('jobseeker.registration')}}" class="footer-links">Register <span class="badge badge-primary">Free</span></a>
              <a href="{{route('login')}}" class="footer-links">Login</a> 
-             <a href="" class="footer-links">Find jobs</a>
+             <a href="{{ route('job.index') }}" class="footer-links">Find jobs</a>
             </div>
           </div>
         </div>

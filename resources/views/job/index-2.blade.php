@@ -216,7 +216,7 @@
                                             </span>
                                         </div>
                                     @else
-                                        <div class="d-inline">
+                                        <div class="d-inline px-2">
                                             <span class="text-muted">
                                                 {{$post->min_salary}}$-{{ $post->max_salary }}$
                                             </span>

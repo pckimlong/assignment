@@ -6,7 +6,7 @@
         <div class="col-sm-12 col-md-6 px-0">
             <div class="login-container">
                 <div class="login-header mb-3">
-                    <h3><img src="{{asset('images/logo/JobPosting.png')}}" width="50px;" alt="">Create your free company account</h3>
+                    <h3>Create your free company account</h3>
                     <p class="text-muted">Register with basic information, Complete your company profile and start post a job!</p>
                 </div>
                 <div class="login-form">
