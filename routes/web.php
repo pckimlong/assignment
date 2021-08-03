@@ -72,6 +72,9 @@ Route::group(['middleware' => ['auth:company']], function () {
         Route::get('company/activities', [CompanyController::class,'jobActivitiesView'])->name('company.activities');
         Route::get('company/activities/{id}', [CompanyController::class, 'showActivity'])->name('company.activities.show');
         Route::delete('company/activities', [CompanyController::class, 'destroy'])->name('company.activities.destroy');
+        
+        Route::delete('company/deleteJob', [CompanyController::class, 'deleteJob'])->name('company.job.deleteJob');
+        
 });
 
 

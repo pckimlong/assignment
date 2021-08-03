@@ -57322,4 +57322,11 @@ $(document).ready(function() {
 
     });
 
+
+    $(document).on('click', '.deleteJob', function() {
+        var postid = $(this).attr('data-postid');
+        $('#app_id').val(postid);
+        $('#deletePostModal').modal('show');
+    });
+
 });

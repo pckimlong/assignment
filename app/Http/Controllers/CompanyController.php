@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Storage;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Pagination\Paginator;
 
 class CompanyController extends Controller
 {   
@@ -22,6 +23,16 @@ class CompanyController extends Controller
     public function overview()
     {
         return view('company.company-overview');
+    }
+    //! Manage Job ------------------------------------------------------------
+    public function deleteJob($jobId)
+    {
+        $delete = JobPost::where('id', $jobId)->where('company_id', auth()->user()->id)->delete();
+        if($delete){
+            Alert::toast('Job post deleted!', 'info');
+            return redirect()->back();
+        }
+        Alert::toast('Failed to delete job post!', 'error');
     }
 
     //! View company public-----------------------------------------------------
@@ -39,6 +50,7 @@ class CompanyController extends Controller
     //! Job Application--------------------------------------------------
     public function jobActivitiesView()
     {
+        Paginator::useBootstrap();
         $company = Company::find(auth()->user()->id);
         $ids =  $company->posts()->pluck('id');
         $activities = JobPostActivity::whereIn('job_post_id', $ids)->latest()->paginate(10);
@@ -66,7 +78,8 @@ class CompanyController extends Controller
     //! Job List --------------------------------------------------------
     public function jobListView()
     {
-        $posts = JobPost::where('company_id', auth()->user()->id)->orderBy('is_active', 'desc')->orderBy('id', 'desc')->get();
+        Paginator::useBootstrap();
+        $posts = JobPost::where('company_id', auth()->user()->id)->orderBy('is_active', 'desc')->orderBy('id', 'desc')->paginate(10);
         return view('company.company-joblist')->with([
             'posts' => $posts
         ]);

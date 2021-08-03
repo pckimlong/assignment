@@ -54,7 +54,7 @@
             </table>
           </div>
           <div class="d-flex justify-content-center mt-4 custom-pagination">
-            {{ $activities && $activities->links() }}
+            {{ $activities->links() }}
           </div>
         </div>
       </div>
