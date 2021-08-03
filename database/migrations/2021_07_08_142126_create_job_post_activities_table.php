@@ -14,11 +14,12 @@ class CreateJobPostActivitiesTable extends Migration
     public function up()
     {
         Schema::create('job_post_activities', function (Blueprint $table) {
+            $table->id();
             $table->bigInteger('job_seeker_id', false, true);
             $table->bigInteger('job_post_id', false, true);
             $table->timestamps();
 
-            $table->primary(['job_seeker_id','job_post_id']);
+            // $table->primary(['job_seeker_id','job_post_id']);
             $table->foreign('job_seeker_id')->references('id')->on('job_seekers');
             $table->foreign('job_post_id')->references('id')->on('job_posts')->onDelete('cascade');
         });

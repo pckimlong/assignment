@@ -68,6 +68,10 @@ Route::group(['middleware' => ['auth:company']], function () {
         Route::get('company/upload', [CompanyController::class,'uploadView'])->name('company.upload');
         Route::post('company/upload', [CompanyController::class,'storeJob'])->name('company.storejob');
         Route::get('company/list', [CompanyController::class,'jobListView'])->name('company.job-list');
+
+        Route::get('company/activities', [CompanyController::class,'jobActivitiesView'])->name('company.activities');
+        Route::get('company/activities/{id}', [CompanyController::class, 'showActivity'])->name('company.activities.show');
+        Route::delete('company/activities', [CompanyController::class, 'destroy'])->name('company.activities.destroy');
 });
 
 

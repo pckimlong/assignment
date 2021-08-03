@@ -12,9 +12,13 @@ class Company extends Model
     public function industry(){
         return $this->hasOne('App\Models\Industry', 'id', 'industry_id');
     }
+    public function posts(){
+        return $this->hasMany(JobPost::class, 'company_id', 'id');
+    }
     public function province(){
         return $this->belongsTo(Province::class);
     }
+
 
     
 }

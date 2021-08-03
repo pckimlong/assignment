@@ -6,6 +6,8 @@ use App\Models\Company;
 use App\Models\CompanyLogin;
 use App\Models\Industry;
 use App\Models\JobPost;
+use App\Models\JobPostActivity;
+use App\Models\JobSeeker;
 use App\Models\Province;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -22,7 +24,7 @@ class CompanyController extends Controller
         return view('company.company-overview');
     }
 
-    //! View company-----------------------------------------------------
+    //! View company public-----------------------------------------------------
     public function companyView($id)
     {
         $company = Company::findOrFail($id);
@@ -32,6 +34,32 @@ class CompanyController extends Controller
         return view('company.company-view', [
             'company' => $company,
             'jobs' => $jobs,
+        ]);
+    }
+    //! Job Application--------------------------------------------------
+    public function jobActivitiesView()
+    {
+        $company = Company::find(auth()->user()->id);
+        $ids =  $company->posts()->pluck('id');
+        $activities = JobPostActivity::whereIn('job_post_id', $ids)->latest()->paginate(10);
+        return view('company.job-activities')->with([
+            'activities' => $activities,
+        ]);;
+    }
+    public function showActivity($id)
+    {
+        $activity = JobPostActivity::find($id);
+
+        $post = $activity->jobPost()->first();
+        $userId = $activity->job_seeker_id;
+        $jobseeker = JobSeeker::find($userId);
+
+        $company = $post->company()->first();
+        return view('company.job-activity-show')->with([
+            'jobseeker' => $jobseeker,
+            'post' => $post,
+            'company' => $company,
+            'activity' => $activity
         ]);
     }
 

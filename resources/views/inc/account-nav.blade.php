@@ -22,9 +22,10 @@
         <i class="fas fa-fingerprint"></i> Change Password
       </a>
     </li> 
-    <li class="list-group-item list-group-item-action {{ request()->segment(2) == 'home' ? 'active': ''}}">
-      {{-- <a href="{{route('jobApplication.index')}}" class="account-nav-link"> --}}
+    <li class="list-group-item list-group-item-action {{ request()->segment(2) == 'activities' ? 'active': ''}}">
+      <a href="{{route('company.activities')}}" class="account-nav-link">
         <i class="fas fa-bell"></i> Job Applications
+      </a>
     </li>
     @endauth
 
