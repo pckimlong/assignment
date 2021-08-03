@@ -1,25 +1,25 @@
 require("./bootstrap");
 
-window.Vue = require('vue').default;
+// window.Vue = require('vue').default;
 
-require("./progressbar");
+// require("./progressbar");
 
-import VueRouter from "vue-router";
-Vue.use(VueRouter);
+// import VueRouter from "vue-router";
+// Vue.use(VueRouter);
 
-import routes from "./routes";
-const router = new VueRouter({
-    routes,
-    mode: "hash"
-});
+// import routes from "./routes";
+// const router = new VueRouter({
+//     routes,
+//     mode: "hash"
+// });
 
-Vue.component(
-    "app-component",
-    require("./components/AppComponent.vue").default
-);
-Vue.component("pagination", require("laravel-vue-pagination"));
+// Vue.component(
+//     "app-component",
+//     require("./components/AppComponent.vue").default
+// );
+// Vue.component("pagination", require("laravel-vue-pagination"));
 
-const app = new Vue({
-    el: "#app",
-    router
-});
+// const app = new Vue({
+//     el: "#app",
+//     router
+// });
