@@ -15,7 +15,7 @@ class JobController extends Controller
     public function index(Request $request)
     {
         Paginator::useBootstrap();
-        $posts = JobPost::orderBy('id', 'desc')->paginate(10);
+        $posts = JobPost::where('is_active', true)->orderBy('id', 'desc')->paginate(10);
         $industries = Industry::orderBy('name')->get();
         return view('job.index-2', [
             'posts' => $posts, 
@@ -49,7 +49,7 @@ class JobController extends Controller
             $posts = JobPost::take(30);
         }
 
-        $posts = $posts->has('company')->with('company')->orderBy('id', 'desc')->paginate(10);
+        $posts = $posts->has('company')->where('is_active', true)->orderBy('id', 'desc')->paginate(10);
         $industries = Industry::orderBy('name')->get();
         // return $posts->toJson();
         return view('job.index-2', [

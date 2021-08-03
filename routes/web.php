@@ -75,6 +75,8 @@ Route::group(['middleware' => ['auth:company']], function () {
         
         Route::delete('company/deleteJob', [CompanyController::class, 'deleteJob'])->name('company.job.deleteJob');
         
+        Route::get('company/post/{id}', [CompanyController::class, 'editPostView'])->name('company.post.show');
+        Route::put('company/post/update', [CompanyController::class, 'updatePost'])->name('company.post.update');
 });
 
 

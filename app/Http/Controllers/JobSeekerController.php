@@ -50,7 +50,8 @@ class JobSeekerController extends Controller
     {   
         $seeker = JobSeeker::find(auth()->user()->id);
         if($seeker->gender == null){
-            
+            Alert::toast('Please complete your info first!', 'error');
+            return redirect()->back();
         }else{
             if(JobPostActivity::where('job_seeker_id', $seeker->id)->where('job_post_id', $jobId)->exists()){
                 Alert::toast('You already applied!', 'error');

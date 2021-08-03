@@ -33,7 +33,7 @@ class CreateJobPostsTable extends Migration
             $table->string('term', 30)->nullable();
             $table->integer('year_of_experience')->unsigned()->nullable();
             $table->text('qualification')->nullable();
-            $table->timestamp('deadline');
+            $table->date('deadline');
             $table->timestamps();
 
             $table->foreign('company_id')->references('id')->on('companies')->on('companies')->onDelete('cascade');;

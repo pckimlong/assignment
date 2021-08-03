@@ -32,6 +32,10 @@ class JobPost extends Model
         return Carbon::parse($this->deadline)->timestamp;
     }
 
+    protected $casts = [
+        'deadline' => 'date:Y-m-d',
+    ];
+
     public function remainingDays()
     {
         $deadline = $this->deadline;

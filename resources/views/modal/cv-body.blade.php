@@ -242,6 +242,7 @@
  background: #fff;
  padding: 60px;
  padding-right: 300px;
+ height: 100%;
 }
 .main-wrapper .section-title {
  text-transform: uppercase;

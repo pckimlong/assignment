@@ -16,6 +16,7 @@ use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Pagination\Paginator;
+use Whoops\Run;
 
 class CompanyController extends Controller
 {   
@@ -25,14 +26,59 @@ class CompanyController extends Controller
         return view('company.company-overview');
     }
     //! Manage Job ------------------------------------------------------------
-    public function deleteJob($jobId)
+    public function deleteJob(Request $request)
     {
+        $jobId = $request->input('jobpost_id');
         $delete = JobPost::where('id', $jobId)->where('company_id', auth()->user()->id)->delete();
         if($delete){
             Alert::toast('Job post deleted!', 'info');
             return redirect()->back();
         }
         Alert::toast('Failed to delete job post!', 'error');
+    }
+    //! update job post---------------------------------------------------------
+    public function editPostView($id)
+    {
+        $post = JobPost::find($id);
+        return response()->json([
+            'data' => $post
+          ]);
+    }
+    public function updatePost(Request $request)
+    {
+        $this->validatePost($request);
+        $post = JobPost::find($request->id);
+        if ($this->_updatePost($post, $request)) {
+            Alert::toast('Post updated!', 'success');
+            return redirect()->back();
+        }
+        Alert::toast('Failed!', 'error');
+        return redirect()->back();
+    }
+    protected function _updatePost(JobPost $post, Request $request)
+    {
+        $post->job_title = $request->job_title;
+        $post->is_active = $request->get('is_active', 0);
+        $post->hire_amount= $request->hire_amount;
+        $post->job_level= $request->job_level;
+        $post->min_salary = $request->min_salary;
+        $post->max_salary = $request->max_salary;
+        $post->min_age = $request->min_age;
+        $post->max_age = $request->max_age;
+        $post->job_location = $request->job_location;
+        $post->languages = $request->languages;
+        $post->specifications = $request->specifications;
+        $post->skills = $request->skills;
+        $post->sex = $request->sex;
+        $post->term = $request->term;
+        $post->year_of_experience = $request->year_of_experience;
+        $post->qualification = $request->qualification;
+        $post->deadline = $request->deadline;
+
+        if ($post->save()) {
+            return true;
+        }
+        return false;
     }
 
     //! View company public-----------------------------------------------------

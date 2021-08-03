@@ -20,7 +20,7 @@ class PostController extends Controller
         }
 
         // global
-        $posts = JobPost::latest()->take(5)->with('company')->get();
+        $posts = JobPost::where('is_active', true)->latest()->take(11)->with('company')->get();
         $industries = Industry::orderBy('name')->orderBy('name')->get();
 
         if(auth('jobseeker')->check()){

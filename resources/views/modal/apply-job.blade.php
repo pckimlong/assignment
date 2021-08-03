@@ -10,14 +10,6 @@
         <div class="modal-body">
             @if ($jobseeker)
             <form action = "{{ route('jobseeker.apply', ['jobId' => $jobId]) }}">
-                {{-- <div class="form-group">
-                      <div class="col-md-14">
-                        <div class="row">
-                          <div class="alert alert-primary">Your detail will send to company</div>
-                          <button href="submit" class="btn primary-btn float-right"></i>Apply</button>
-                        </div>
-                    </div>
-                  </div> --}}
                   <div class="form-group">
                     <div class="row">
                       <div class="col-md-10">
