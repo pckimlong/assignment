@@ -16,11 +16,11 @@ class PostController extends Controller
     public function index()
     {
         if(auth('company')->check()){
-            return redirect(route('company.overview'));
+            return redirect(route('company.info'));
         }
 
         // global
-        $posts = JobPost::latest()->take(20)->with('company')->get();
+        $posts = JobPost::latest()->take(5)->with('company')->get();
         $industries = Industry::orderBy('name')->orderBy('name')->get();
 
         if(auth('jobseeker')->check()){

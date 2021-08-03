@@ -24,10 +24,9 @@
                                     <p class="m-b-10 f-w-600">Email</p>
                                 <h6 class="text-muted f-w-400">{{ auth()->user()->email }}</h6>
                                 </div>
-
                                 <div class="col-sm-6">
                                     <p class="m-b-10 f-w-600">Phone</p>
-                                    <h6 class="text-muted f-w-400">{{ auth()->user()->phone }}</h6>
+                                    <h6 class="text-muted f-w-400">{{ auth()->user()->jobSeeker->phone_number }}</h6>
                                 </div>
                             </div>
                             <h6 class="m-b-20 m-t-40 p-b-5 b-b-default f-w-600"></h6>

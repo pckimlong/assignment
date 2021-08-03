@@ -1,10 +1,10 @@
 <div class="account-nav">
   <ul class="list-group">
     @auth('company')
-    <li class="list-group-item list-group-item-action {{ request()->segment(2) == 'overview' ? 'active': ''}}">
+    {{-- <li class="list-group-item list-group-item-action {{ request()->segment(2) == 'overview' ? 'active': ''}}">
       <a href="{{route('company.overview')}}" class="account-nav-link">
         <i class="fas fa-chart-line"></i> Overview
-    </li>
+    </li> --}}
     <li class="list-group-item list-group-item-action {{ request()->segment(2) == 'info' ? 'active': ''}}">
       <a href="{{route('company.info')}}" class="account-nav-link">
         <i class="fas fa-info-circle"></i> Information

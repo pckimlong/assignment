@@ -173,12 +173,12 @@
                                         </div>
                                         <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 pl-0 pl-md-2 pb-2">
                                             <h5 class="secondary-link font-weight-bold">
-                                                <a href="{{route('post.show',['job'=>$post->id])}}">
+                                                <a href="{{route('post.show',['job'=>$post->id])}}" target="_blank">
                                                     {{ $post->job_title }}
                                                 </a>
                                             </h5>
                                             <h6 class = "mt-2">
-                                                <a href="{{route('company',['id'=>$post->company->id])}}">
+                                                <a href="{{route('company',['id'=>$post->company->id])}}" target="_blank">
                                                     {{ $post->company->company_name }}
                                                 </a>
                                             </h6>

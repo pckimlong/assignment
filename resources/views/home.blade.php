@@ -47,7 +47,7 @@
                   @foreach ($posts as $post)
                     @if ($post->company)
                     <div class="col-sm-6 col-md-6 col-lg-4 col-sm-6 mb-sm-3">
-                      <a href="{{route('post.show',['job'=>$post->id])}}">
+                      <a href="{{route('post.show',['job'=>$post->id])}}" target="_blank">
                       <div class="job-item border row h-100">
                         <div class="col-xs-3 col-sm-4 col-md-5">
                           <img src="{{asset($post->company->logo)}}" width="100px"  alt="job post" class="img-fluid p-2">
@@ -55,7 +55,7 @@
                         <div class="job-description col-xs-9 col-sm-8 col-md-7">
                         <p class="company-name" title="{{$post->company->company_name}}">{{$post->company->company_name}}</p>
                           <ul class="company-listings">
-                            <li>•{{substr($post->job_title, 0, 27)}}</li>
+                            <li>• {{substr($post->job_title, 0, 27)}}</li>
                         </ul>
                         </div>
                       </div>

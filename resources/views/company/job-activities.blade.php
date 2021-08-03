@@ -25,7 +25,7 @@
                 @if($activities && $activities->count())
                   @foreach($activities as $activity)
                   <tr>
-                    <td>1</td>
+                    <td></td>
                     <td>{{$activity->jobSeeker->fullname()}}</td>
                     <td><a href="mailto:{{$activity->jobSeeker->login->email}}">{{$activity->jobSeeker->login->email}}</a></td>
                     <td><a href="{{route('post.show',['job'=>$activity->jobPost->id])}}">{{substr($activity->jobPost->job_title,0,14)}}...</a></td>

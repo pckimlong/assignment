@@ -145,7 +145,7 @@
                     </tbody>
                   </table>
                   <div class="mx-2 text-primary d-flex flex-row-reverse">
-                    <a href="{{ route('company.registration') }}">Add Education</a>
+                    <a href="#">Add Education</a>
                 </div>
               </div>
 
@@ -167,7 +167,7 @@
                     </tbody>
                   </table>
                   <div class="mx-2 text-primary d-flex flex-row-reverse">
-                    <a href="{{ route('company.registration') }}">Add Experience</a>
+                    <a href="#">Add Experience</a>
                 </div>
               </div>
 
